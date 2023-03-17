@@ -4,8 +4,8 @@
 <div>
     <form class="form-inline">
         <div class="row p-0  d-flex justify-content-between">
-            <div class="col-4  d-flex  justify-content-start" >
-                <a href="/ajouterUser" class="btn mx-3" style="background: gold">Ajouter</a>
+            <div class="col-4  text-start" >
+                <a href="/ajouterUser" class="btn mx-3 w-50" style="background: gold">Ajouter</a>
             </div>
             <div class="col-7 ">
 
@@ -24,7 +24,7 @@
         <form>
 </div>
   <div>
-    <table class="table mt-5"  style="background-color: rgb(122, 108, 33);">
+    <table class="table mt-4"  style="background-color: rgb(122, 108, 33);">
       <thead>
         <tr>
           <th scope="col">Code</th>
