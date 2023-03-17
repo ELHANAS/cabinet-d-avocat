@@ -30,7 +30,7 @@
 
                 </div>
             </div>
-            <form>
+            </form>
     </div>
     <table style="background: #7A6C21" class="table mt-4">
         <tr>
@@ -54,3 +54,4 @@
 
 
 @section("titre","Users")
+@section("users","text-white border-bottom ")

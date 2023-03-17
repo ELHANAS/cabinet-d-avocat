@@ -50,6 +50,6 @@
     </form>
     </div>
 @endsection
-
+@section("user","text-white border-bottom ")
 
 @section("titre","Ajouter user")

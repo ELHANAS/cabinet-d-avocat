@@ -57,3 +57,4 @@
   </div>
 @endsection
 @section("titre","Clients")
+@section("clients","text-white border-bottom ")

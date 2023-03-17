@@ -30,14 +30,17 @@
         }
         li{
             background-color: black ;
-            padding: 10px;
-            border-bottom: 2px inset gold;
 
+
+        }
+        li:hover{
+            background: gold;
+            color: black;
         }
         #logo{
             margin: 50px;
         }
-        li:last-child{
+        li:last-child a{
             border-bottom: none;
         }
         header{
@@ -49,24 +52,32 @@
 
         }
 
-        a{
+        li a{
+            padding: 10px 0;
+            display: block;
+            width: 90%;
+            border-bottom: 2px inset gold;
+
             text-decoration: none;
+            margin: auto;
             color: gold;
         }
         h1{
             color: gold;
         }
-        #iconProfil,#params{
-            width: 20px;
-            height: 20px;
+        .iconProfil,#params{
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             border:2px solid white;
             position: absolute;
             top:10px;
             right: 10px;
+            display: block;
         }
+
         #params{
-            right: 40px;
+            right: 80px;
             border: none;
         }
         #menu{
@@ -81,26 +92,29 @@
             width: 85%;
             right: 0;
         }
-        #vide{
-            height: 30%;
+
+        ul:last-child{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
         }
     </style>
 </head>
 <body>
 <div class="container-fluid ">
     <div class="row">
-        <div id="menu" class="col-2 text-center p-3" style="background-color:black;border: 5px solid gold" >
+        <div id="menu" class="col-2 px-0 text-center pt-3" style="background-color:black;border: 5px solid gold" >
             <a href="" id="logo"><img class="w-50" src="./images/icon/63cdbfa23e25840b060311e1eba64ae0.png"></a>
-            <ul class="mt-5 w-100"  >
-                <li ><a href="/acceuil">Accueil</a></li>
-                <li ><a href="/users">Users</a></li>
-                <li ><a href="/clients">Clients</a></li>
-                <li ><a href="">Affairs</a></li>
-                <li ><a href="">Tâches</a></li>
+            <ul class=" mt-5 w-100"  >
+                <li><a class='@yield("acceuil")'  href="/acceuil">Accueil</a></li>
+                <li><a class='@yield("users")' href="/users">Users</a></li>
+                <li><a class='@yield("clients")' href="/clients">Clients</a></li>
+                <li><a class="@yield("Affairs")"  href="/affaires">Affaires</a></li>
+                <li><a class="@yield("Taches")"  href="/taches">Tâches</a></li>
             </ul>
-            <div id="vide">
-            </div>
-            <ul class="w-75 m-auto " >
+
+            <ul  >
                 <li><a href="">Rendez-vous</a></li>
                 <li><a href="">Log out</a></li>
             </ul>
@@ -109,9 +123,9 @@
             <header class="w-100">
                 <h1 class="h1 text-center pt-3 ">@yield("titre")</h1>
                 <div>
-                        <a><img id="params" src="./images/icon/images.png" alt="paramètre"></a>
-                    <div id="iconProfil">
-                        <a><img src="" alt=""></a>
+                        <a href="/parametres"><img id="params" src="./images/icon/images.png" alt="paramètre"></a>
+                    <div style="width: 40px">
+                        <a class="iconProfil" href="/User"><img src="" alt=""></a>
                     </div>
                 </div>
             </header>

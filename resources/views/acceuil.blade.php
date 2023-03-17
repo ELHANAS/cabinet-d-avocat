@@ -40,3 +40,4 @@
 
 @endsection
 @section("titre","Cabinets D’avocat")
+@section("acceuil","text-white border-bottom ")

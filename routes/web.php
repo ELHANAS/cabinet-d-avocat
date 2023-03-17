@@ -32,4 +32,19 @@ Route::get('/ajouterUser', function () {
 Route::get('/clients', function () {
     return view('Clients');
 });
+Route::get('/affaires', function () {
+    return view('affaires');
+});
+
+Route::get('/taches', function () {
+    return view('tache');
+});
+Route::get('/parametres', function () {
+    return view('parametres');
+});
+Route::get('/User', function () {
+    return view('profilUser');
+});
+
+
 
