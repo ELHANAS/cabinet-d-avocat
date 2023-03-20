@@ -7,7 +7,7 @@
             <div class="row p-0  d-flex justify-content-between">
                 <div class="col-6 row  d-flex justify-content-between" >
                     <div class="col-4 ">
-                        <a href="/ajouterUser" class="btn w-100 col-3" style="background: gold">Ajouter</a>
+                        <a href="/ajouterTache" class="btn w-100 col-3" style="background: gold">Ajouter</a>
                     </div>
                     <div class="col col-8 row">
                         <div class="col-6">

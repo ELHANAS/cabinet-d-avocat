@@ -6,7 +6,7 @@
             <div class="row p-0  d-flex justify-content-between">
                 <div class="col-6 row  d-flex justify-content-between" >
                     <div class="col-3 ">
-                        <a href="/ajouterUser" class="btn w-100 col-3" style="background: gold">Ajouter</a>
+                        <a href="/ajouterAffaire" class="btn w-100 col-3" style="background: gold">Ajouter</a>
                     </div>
                     <div class="col col-4">
                         <select class="form-select text-white col-6" style="background: goldenrod">

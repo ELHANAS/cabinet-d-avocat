@@ -5,7 +5,7 @@
     <form class="form-inline">
         <div class="row p-0  d-flex justify-content-between">
             <div class="col-4  text-start" >
-                <a href="/ajouterUser" class="btn mx-3 w-50" style="background: gold">Ajouter</a>
+                <a href="/ajouterClient" class="btn mx-3 w-50" style="background: gold">Ajouter</a>
             </div>
             <div class="col-7 ">
 

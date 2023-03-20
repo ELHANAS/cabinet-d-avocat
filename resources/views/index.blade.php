@@ -2,64 +2,131 @@
 
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Cabinet D'avocat Login</title>
+    <meta charset="UTF-8">
+    <title>Cabinet D'avocat Login</title>
     <link rel="stylesheet" href="./bootstrap.min.css">
-	<link href="style.css" rel="stylesheet">
-   <style>
-       #back{
-           border-left:6px solid gold;
-           background:url('images/AdobeStock295967841jpeg_629dca4f32009.jpg') no-repeat;
-           background-size: cover;
+    <link href="style.css" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: poppins;
+            font-size: 16px;
+            color: rgb(255, 215, 0);
+        }
+        .form-box {
+            background-color: rgba(0, 0, 0, 0.5);
+            margin: auto auto;
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #000;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 500px;
+            height: 430px;
+        }
+        .form-box:before {
+            background-image: url("images/quelles-exigences-pour-ouvrir-un-cabinet-avocats.jpg");
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            content: "";
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: -1;
+            display: block;
+            filter: blur(2px);
+        }
+        .form-box .header-text {
+            font-size: 32px;
+            font-weight: 600;
+            padding-bottom: 30px;
+            text-align: center;
+        }
+        .form-box input {
+            margin: 10px 0px;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 18px;
+            font-family: poppins;
+        }
+        .form-box input[type=checkbox] {
+            display: none;
+        }
+        .form-box label {
+            position: relative;
+            margin-left: 5px;
+            margin-right: 10px;
+            top: 5px;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        .form-box label:before {
+            content: "";
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 5px;
+            position: absolute;
+            left: 0;
+            bottom: 1px;
+            background-color: #ddd;
+        }
+        .form-box input[type=checkbox]:checked+label:before {
+            content: "\2713";
+            font-size: 20px;
+            color: #000;
+            text-align: center;
+            line-height: 20px;
+        }
+        .form-box span {
+            font-size: 14px;
+        }
+        .form-box button {
+            background-color: rgb(180, 180, 180);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+            padding: 10px;
+            margin: 20px 0px;
+        }
+        span a {
+            color: #BBB;
+        }
+    </style>
 
-           position: fixed;
-           height: 100%;width: 50%;
-           right: 0;
-       }
-       </style>
 
 </head>
-<body >
-<section class=" gradient-form" style="background-color: #eee;position: fixed;height: 100%">
 
-                    <div class="row g-0">
-                        <div class="col-lg-6" style="position: fixed;height: 100%;width: 50%;left: 0">
-                            <div class="card-body p-md-5 w-75 m-auto">
-
-                                <div class="text-center">
-                                    <img src="./images/icon/logo-caroline-alix-avocat-guadeloupe-400.png"
-                                         style="width: 185px;" alt="logo">
-                                    <h4 class="mt-1 mb-5 pb-1">Cabinet d'avocat</h4>
-                                </div>
-
-                                <form action="/acceuil">
-                                    <p>Please login to your account</p>
-
-                                    <div class="form-outline mb-4">
-                                        <input type="email" id="form2Example11" class="form-control"
-                                               placeholder="Phone number or email address" />
-                                        <label class="form-label" for="form2Example11">Username</label>
-                                    </div>
-
-                                    <div class="form-outline mb-4">
-                                        <input type="password" id="form2Example22" class="form-control" />
-                                        <label class="form-label" for="form2Example22">Password</label>
-                                    </div>
-
-                                    <div class="text-center pt-1 mb-5 pb-1">
-                                        <button type="submit" class="btn text-white mb-3" style="background: gold" type="button">Log
-                                            in</button>
-                                        <a class="text-muted" href="#!">Forgot password?</a>
-                                    </div>
-                                </form>
-
-                            </div>
-                        </div>
-                        <div id="back" class="col-lg-6 d-flex  align-items-center gradient-custom-2" style="">
-
-                        </div>
-
+<body>
+<div class="form-box">
+    ok
+    <div class="header-text">
+        Login Form
     </div>
-</section>
+    <form action="/acceuil">
+        <input placeholder="Your UserName" type="text">
+        <input placeholder="Your Password" type="password">
+        <input     id="terms" type="checkbox">
+        <label for="terms"></label>
+        <span>Agree with <a href="#">Terms & Conditions</a></span
+        > <button type="submit">Connecter</button>
+    </form>
+</div>
 </body>
+
 </html>

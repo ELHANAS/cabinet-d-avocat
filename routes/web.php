@@ -24,6 +24,13 @@ Route::get("/",function (){
 }) ;
 
 
+Route::get("/ajouterTache",function (){
+    return view("ajouterTache") ;
+}) ;
+
+
+
+
 Route::get('/ajouterUser', function () {
     return view('AjouterUser');
 });
@@ -45,6 +52,17 @@ Route::get('/parametres', function () {
 Route::get('/User', function () {
     return view('profilUser');
 });
+
+Route::get('/ajouterAffaire', function () {
+    return view('ajouterAffaire');
+});
+
+
+
+    Route::get('/ajouterClient', function () {
+        return view('AjouterClient');
+    });
+
 
 
 
