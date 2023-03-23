@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div >
+    <div >x
         <form>
             <div class="row w-50 d-flex justify-content-start">
                 <label class="form-label col-4 text-end p-1 fw-bold">launges  :</label>
