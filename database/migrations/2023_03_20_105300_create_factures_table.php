@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('Montant');
             $table->boolean('payementR');
             $table->date('DateC');
-
+            $table->integer("id_affaire") ;
             $table->timestamps();
         });
     }

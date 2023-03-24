@@ -19,9 +19,11 @@ return new class extends Migration
             $table->string('adversaire');
             $table->string('jugement');
             $table->date('jugementDate');
+
             $table->string('type');
             $table->boolean('etat');
-
+            $table->integer('id_client');
+            $table->integer('id_user');
             $table->timestamps();
         });
     }

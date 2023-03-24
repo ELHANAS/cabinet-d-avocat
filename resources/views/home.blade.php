@@ -6,10 +6,10 @@
             <div class="col d-flex justify-content-center "  >
                 <div class="  p-3 border bg-light text-center fw-bold" style=" height: 200px ; width: 250px ;background-image: linear-gradient(to right,black,gold)">
                     <div class=" fs-1" style=" height: 50px ; ">
-                        <span>7</span>
+                        <span>{{$NClients}}</span>
                     </div>
                     <div  class=" " style=" height: 50px ; margin-top: 40px">
-                        <span>user active </span>
+                        <span>Clients active </span>
                     </div>
                 </div>
             </div>

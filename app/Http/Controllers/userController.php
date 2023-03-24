@@ -36,13 +36,15 @@ class userController extends Controller
         $user->email = $request->email ;
         $user->password =Hash::make($request->password)  ;
         $user->tel = $request->tel ;
-        $user->role = $request->role ;
+        $user->fonction = $request->role ;
 
-        if($request->has('photo') and  $request->photo){
-            $image = $request->photo ;
-            $name = "".time().".".$image->extension()."";
-            $path = Storage::disk("public")->put($name ,$image ) ;
-            dd($name ."//".$path) ;
+        if($request->has('image')){
+            $t = explode(".", $request->image) ;
+
+            $image = $request->image ;
+            $name = time().".".$t[count($t)-1];
+
+            Storage::disk("local")->put( $name ,$image) ;
             $user->photo = $name ;
         }
         $user->save() ;
@@ -78,7 +80,7 @@ class userController extends Controller
         $user->email = $request->email ;
         $user->password =Hash::make($request->password) ;
         $user->tel = $request->tel ;
-        $user->role = $request->role ;
+        $user->fonction = $request->role ;
         $user->save() ;
         return redirect(route("users.index")) ;
     }
@@ -101,7 +103,7 @@ class userController extends Controller
         }}
     public  function  filtreUser(Request $request){
         $role = $request->filtreRole ;
-    $data=User::where(["role"=>$role])->get() ;
+    $data=User::where(["fonction"=>$role])->get() ;
 
     return view("listeUsers",["users"=>$data]) ;
 }

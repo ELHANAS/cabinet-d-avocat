@@ -11,13 +11,13 @@ background-size: cover ; height: 600px ; width: 700px ; border: 3px #FFD700 soli
                 <p>{{$user->name}}</p>
 
 
-                <p> <img src="{{url("./images/icon/stock-vector-black-telephone-auricular-gold-plated.jpg")}}" style="width: 30px;height: 30px"/>0974829438092</p>
+                <p> <img src="{{url("./images/icon/stock-vector-black-telephone-auricular-gold-plated.jpg")}}" style="width: 30px;height: 30px"/>{{$user->tel}}</p>
             </div>
         </div>
         <div class="row d-flex justify-content-start">
             <div class="col-auto " style="width: 150px; color:#FFD700; margin-left: 90px">
-                <h3>{{$user->role}}</h3>
-                <P>@if($user->admin) Admin @endif</P>
+                <h3>{{$user->fonction}}</h3>
+                <P>@if($user->role) Admin @endif</P>
             </div>
         </div>
         <div class="row  m-2  " id="row" style="color:#FFD700; ">

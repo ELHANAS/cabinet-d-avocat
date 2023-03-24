@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid" style="height: 500px;padding-top: 100px">
+<div class="container-fluid" style="height: 500px;padding-top: 80px">
     <div class="row  m-5 " id="row">
         <div class="col d-flex justify-content-center "  >
             <div class="  p-3 border bg-light text-center fw-bold" style=" height: 200px ; width: 250px ;background-image: linear-gradient(to right,black,gold)">

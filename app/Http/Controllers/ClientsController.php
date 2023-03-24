@@ -69,8 +69,6 @@ class ClientsController extends Controller
             return view('ajax_search_client',['data'=>$data]);
 
         }
-
-
     }
     public  function show(int $id){
         $data=Client::select("*")->find($id);

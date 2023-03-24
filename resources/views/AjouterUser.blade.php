@@ -27,8 +27,8 @@
             </div>
             <div class="form-group py-3 row">
                 <label class="form-label col" for="photo">photo :</label>
-                <input type="file" class="form-control col" id="photo" name="photo">
-                @error("photo")
+                <input type="file" class="form-control col" id="image" name="image">
+                @error("image")
                 <small  class="ms-3 form-text text-danger">{{$message}}</small>
                 @enderror
             </div>
@@ -52,7 +52,7 @@
                 <label  class="col">Rôle :</label>
                 <div class="col">
                 <input type="radio" class="form-check-input col-2" id="role1" value="Avocat" @if(old("role") == "Avocat" ) checked  @endif name="role"> Avocat
-                <input type="radio" class="form-check-input ms-5 col-2" id="role2"value="sec" @if(old("role") == "sec") checked  @endif  name="role"> sec
+                <input type="radio" class="form-check-input ms-5 col-2" id="role2"value="secrétaire" @if(old("role") == "secrétaire") checked  @endif  name="role"> secrétaire
 
                 </div>
                 @error("role")

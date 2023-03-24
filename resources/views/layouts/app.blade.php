@@ -39,10 +39,12 @@
 
 
         }
-        li:hover{
-            background: gold;
-            color: black;
+        li:hover , li:hover a{
+            background: #6e5d11;
+            color: #ffffff;
+
         }
+
         #logo{
             margin: 50px;
         }
@@ -112,6 +114,10 @@
             left: 0;
             width: 100%;
         }
+        .icon{
+            width: 20px;
+            margin-right: 5px;
+        }
     </style>
 
 </head>
@@ -120,22 +126,38 @@
 
             <div class="row">
                 <div id="menu" class="col-2 px-0 text-center pt-3" style="background-color:black;border: 5px solid gold" >
-                    <a href="" id="logo"><img class="w-50" src="{{url('./images/icon/63cdbfa23e25840b060311e1eba64ae0.png')}}"></a>
+                    <a href="/home" id="logo"><img class="w-50" src="{{url('./images/icon/63cdbfa23e25840b060311e1eba64ae0.png')}}"></a>
                     <ul class=" mt-5 w-100"  >
-                        <li><a class='@yield("acceuil")'  href="/home">Accueil</a></li>
-                        <li><a class='@yield("users")' href="/users">Users</a></li>
-                        <li><a class='@yield("clients")' href="/clients">Clients</a></li>
-                        <li><a class="@yield("Affairs")"  href="/affaires">Affaires</a></li>
-                        <li><a class="@yield("Taches")"  href="/taches">Tâches</a></li>
+                        <li class="text-start"><a class='@yield("acceuil")'  href="/home">
+                                <img class="icon" src="{{url("./images/icon/Favicon.png")}}" alt="">
+                                Accueil</a></li>
+
+                        <li class="text-start"><a class='@yield("users")' href="/users">
+                                <img class="icon" src="{{url("./images/icon/person-icon-png.png")}}" alt="">
+                                Users</a></li>
+                        <li class="text-start"><a class='@yield("clients")' href="/clients">
+                                <img class="icon" src="{{url("./images/icon/user_anonymous_yellow_hot.png")}}" alt="">
+                                Clients</a></li>
+                        <li class="text-start"><a class="@yield("Affairs")"  href="/affaires">
+                                <img class="icon" src="{{url("./images/icon/balance-2858897_128033.png")}}" alt="">
+                                Affaires</a></li>
+                        <li class="text-start"><a class="@yield("Taches")"  href="/taches">
+                                <img class="icon" style="color:gold" src="{{url("./images/icon/pngimg.com - gavel_PNG29.png")}}" alt="">
+                                Tâches</a></li>
                     </ul>
 
                     <ul  >
-                        <li><a href="/parametres">parametres</a></li>
-                        <li><a href="">Rendez-vous</a></li>
-                        <li>
+                        <li class="text-start"><a href="/parametres">
+                                <img class="icon" src="{{url("./images/icon/prametre2342.png")}}" alt="">
+                                parametres</a></li>
+                        <li class="text-start"><a href="">
+                                <img class="icon" src="{{url("./images/icon/stock-vector-bank-symbol-gold-plated-metalic.jpg")}}" alt="">
+                                Rendez-vous</a></li>
+                        <li class="text-start">
                             <a  href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
+                                <img class="icon" src="{{url("./images/icon/825105_arrows_512x512.png")}}" alt="">
                                 {{ __('Logout') }}
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

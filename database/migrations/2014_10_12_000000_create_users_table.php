@@ -18,8 +18,8 @@ return new class extends Migration
             $table->timestamp('email_v')->nullable();
             $table->string('password');
             $table->string('tel')->default("18378914");
-            $table->string('role')->default("avocat");
-            $table->boolean('admin')->default(0);
+            $table->string('fonction')->default("avocat");
+            $table->boolean('role')->default(0);
             $table->string("photo")->default("360_F_503577073_y4ZwKcQttFbUut0A7InyK8LhS3ObKL2t.jpg");
             $table->rememberToken();
             $table->timestamps();

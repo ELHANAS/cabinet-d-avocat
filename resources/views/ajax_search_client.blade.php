@@ -20,11 +20,11 @@
 
                 <td>
                     <a href="{{route('edit-clients', $info->id)}}" class="btn " style="background: gold">
-                        <img  style="width: 20px;height: 20px" src="./icon/1159633.png"/></a>
+                        <img  style="width: 20px;height: 20px" src="{{url("./images/icon/1159633.png")}}"/></a>
                     <a href="{{route('delet-clients', $info->id)}}" onclick="return confirm('are you sur you want delete this client')" class=" btn" style="background: gold">
-                        <img  style="width: 20px;height: 20px" src="./icon/1345874.png"/></a>
+                        <img  style="width: 20px;height: 20px" src="{{url("./images/icon/1345874.png")}}"/></a>
                     <a href="{{route('show-client', $info->id)}}"  class=" btn" style="background: gold">
-                        <img  style="width: 20px;height: 20px" src="./icon/user-profile-icon.webp"/></a>
+                        <img  style="width: 20px;height: 20px" src="{{url("./images/icon/user-profile-icon.webp")}}"/></a>
 
                 </td>
 

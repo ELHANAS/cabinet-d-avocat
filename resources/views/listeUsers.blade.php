@@ -22,8 +22,8 @@
                         <div class="col col-7">
                             <select class="form-select text-white col-6" onchange="submit()" name="filtreRole" id="filtreRole" style="background: goldenrod">
                                 <option hidden  selected>filtrer par le rôle</option>
-                                <option value="Avocat">Avocat</option>
-                                <option value="secrétaire">secrétaire</option>
+                                <option @if(old("filtreRole") == "Avocat") selected @endif value="Avocat">Avocat</option>
+                                <option @if(old("filtreRole") == "secrétaire") selected @endif value="secrétaire">secrétaire</option>
                             </select>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
                         <td>{{$user->id}}</td>
                         <td>{{$user->name}}</td>
 
-                        <td>{{$user->role}}</td>
+                        <td>{{$user->fonction}}</td>
                         <td>
                             <a class="btn  " style="width: 40px;background: gold"   href="{{route("user.edit",["id"=>$user->id])}}"><img class="w-100" src="{{url("./images/icon/1159633.png")}}"></a>
                             <a class="btn  " style="width: 40px;background: gold"  onclick="return confirm('Are you sure, you want to delete it?')" href="{{route("user.destroy",["id"=>$user->id])}}"><img class="w-100" src="{{url("./images/icon/1345874.png")}}"></a>
