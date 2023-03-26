@@ -4,7 +4,8 @@
         <th scope="col">Code</th>
         <th scope="col">Nom</th>
         <th scope="col">Prenom</th>
-        <th scope="col">ACTIVE</th>
+        <th scope="col">Active</th>
+        <th scope="col">Ville</th>
         <th scope="col"> actions</th>
     </tr>
     </thead>
@@ -17,7 +18,7 @@
                 <td>{{$info->nom}}</td>
                 <td>{{$info->prenom}}</td>
                 <td>@if($info->active==1) Active @else not active @endif</td>
-
+                <td>{{$info->ville}}</td>
                 <td>
                     <a href="{{route('edit-clients', $info->id)}}" class="btn " style="background: gold">
                         <img  style="width: 20px;height: 20px" src="{{url("./images/icon/1159633.png")}}"/></a>

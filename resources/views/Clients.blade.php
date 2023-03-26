@@ -56,7 +56,8 @@
                                 <th scope="col">Code</th>
                                 <th scope="col">Nom</th>
                                 <th scope="col">Prenom</th>
-                                <th scope="col">ACTIVE</th>
+                                <th scope="col">Active</th>
+                                <th scope="col">Ville</th>
                                 <th scope="col"> actions</th>
                             </tr>
                             </thead>
@@ -69,7 +70,7 @@
                                         <td>{{$info->nom}}</td>
                                         <td>{{$info->prenom}}</td>
                                         <td>@if($info->active==1) Active @else not active @endif</td>
-
+                                        <td>{{$info->ville}}</td>
                                         <td>
                                             <a href="{{route('edit-clients', $info->id)}}" class="btn " style="background: gold">
                                                 <img  style="width: 20px;height: 20px" src="{{url("./images/icon/1159633.png")}}"/></a>
@@ -109,9 +110,30 @@
                                     }
 
 
+                                })
+                            });
+                            $(document).on('input',"#filtrerClient",function(){
+
+                                var filtrerClient=$(this).val();
+                                jQuery.ajax({
+                                    url:"{{route('ajax_feltre_client')}}",
+                                    type:'post',
+                                    datatype: 'html',
+                                    cache:false,
+                                    data:{filtrerClient:filtrerClient,'_token':"{{csrf_token()}}"},
+                                    success:function(data){
+                                        $("#ajax_search_result").html(data);
+                                    },
+                                    error:function(){
+
+                                    }
+
+
 
                                 })
                             })
+
+
 
 
                         })

@@ -19,13 +19,20 @@
                     <small  class="ms-3 form-text text-danger">{{$message}}</small>
                     @enderror
                 </div>
-                <div class="form- row  p-3">
-                    <label class="col" class="form-label" for="exampleCheck1">Mot de passe :</label>
-                    <input type="text" class="form-control col col" id="password" value="{{$user->password}}" placeholder="entrer your password..." name="password">
-                    @error("password")
-                    <small  class="ms-3 form-text text-danger">{{$message}}</small>
-                    @enderror
-                </div>
+                @if(Auth::user()->role == 1)
+                    <div class="form- row  p-3">
+                        <label  class="col">Fonction :</label>
+                        <select class="form-select col" name="admin" id="admin">
+                            <option selected hidden>is_admin</option>
+                            <option @if($user->role == 1)selected @endif value="admin">Admin</option>
+                            <option @if($user->role == 0)selected @endif value="user">User</option>
+                        </select>
+                        @error("admin")
+                        <small  class="ms-3 form-text text-danger">{{$message}}</small>
+                        @enderror
+                    </div>
+                @endif
+
 
             </div>
 

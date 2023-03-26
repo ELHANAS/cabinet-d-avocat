@@ -70,6 +70,14 @@ class ClientsController extends Controller
 
         }
     }
+    function ajax_filtre_client(Request $request){
+        if($request->ajax()){
+            $filtrerClient=$request->filtrerClient;
+            $data=Client::where("ville","like","%{$filtrerClient}%")->orderby("id","ASC")->get();
+            return view('ajax_search_client',['data'=>$data]);
+
+        }
+    }
     public  function show(int $id){
         $data=Client::select("*")->find($id);
         return view('profilClient' ,['data'=>$data]);

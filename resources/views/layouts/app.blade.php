@@ -18,14 +18,15 @@
         root{
             padding: 0;
             margin: 0;
+
         }
+
+
         main{
-            height: 84%;
-            background: url({{url("./images/backgourndmain.png")}}) no-repeat ;
-            background-size:cover ;
+            height: 100%;
+
             position: relative;
             top:0;
-            border: 4px solid gold;
             overflow:auto;
         }
         ul{
@@ -53,10 +54,13 @@
         }
         header{
             background-color: black;
-            height: 16%;
+            height:50px;
             position: relative;
+            top: 0;
+            right: 0;
+            width: 100%;
             margin-bottom: 0;
-
+            box-shadow: 5px 5px 10px #1f1f1f;
 
         }
 
@@ -75,24 +79,25 @@
         }
         h1{
             color: gold;
+            font-size: 25px;
+            padding: 10px 15px;
         }
-       #params{
-            width:    300px;
+       #params,#back{
+            width:    40px;
             height: 40px;
-
-
+display: inline-block;
+           border-radius: 50%;
             position: absolute;
-           color: gold;
-            top:10px;
-            right: 10px;
-
+           background: gold;
+            top:5px;
+           border: 2px solid gold;
+           box-shadow: -3px 3px 3px #363636;
         }
-
+        #params{
+            right: 10px;
+        }
     #back{
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background: gold;
+       right: 70px;
         display: block;
     }
         #menu{
@@ -100,6 +105,7 @@
             height: 100%;
             width: 15%;
             left: 0;
+            box-shadow: 5px 5px 10px #1f1f1f;
         }
         #content{
             position: fixed;
@@ -118,6 +124,20 @@
             width: 20px;
             margin-right: 5px;
         }
+        #rowHome div{
+           border-radius: 20px;
+        }
+        #rowHome div:hover{
+            transform: scale(1.2, 1.2);
+
+        }
+        #app{
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: url({{url("./images/backgourndmain.png")}}) no-repeat ;
+            background-size:cover ;
+        }
     </style>
 
 </head>
@@ -125,16 +145,19 @@
     <div id="app" class="container-fluid ">
 
             <div class="row">
-                <div id="menu" class="col-2 px-0 text-center pt-3" style="background-color:black;border: 5px solid gold" >
+                <div id="menu" class="col-lg-3 px-0 text-center pt-3" style="background-color:black;" >
                     <a href="/home" id="logo"><img class="w-50" src="{{url('./images/icon/63cdbfa23e25840b060311e1eba64ae0.png')}}"></a>
                     <ul class=" mt-5 w-100"  >
                         <li class="text-start"><a class='@yield("acceuil")'  href="/home">
                                 <img class="icon" src="{{url("./images/icon/Favicon.png")}}" alt="">
                                 Accueil</a></li>
-
+                        @if(Auth::User())
+                    @if(Auth::User()->role == 1)
                         <li class="text-start"><a class='@yield("users")' href="/users">
                                 <img class="icon" src="{{url("./images/icon/person-icon-png.png")}}" alt="">
                                 Users</a></li>
+                        @endif
+                        @endif
                         <li class="text-start"><a class='@yield("clients")' href="/clients">
                                 <img class="icon" src="{{url("./images/icon/user_anonymous_yellow_hot.png")}}" alt="">
                                 Clients</a></li>
@@ -163,42 +186,35 @@
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
+
                         </li>
                     </ul>
                 </div>
-                <div id="content" class="col border-dark bg-dark p-0">
+                <div id="content" class="col-lg-9  p-0">
                     <header class="w-100">
-                        <h1 class="h1 text-center pt-3 ">@yield("titre")</h1>
+                        <h1 class=" text-start  ">@yield("titre")</h1>
                         <div>
-                            @guest
-                                @if (Route::has('login'))
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                    </li>
-                                @endif
 
-                                @if (Route::has('register'))
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                    </li>
-                                @endif
-                            @else
-                                <div class="row text-center" id="params">
+                                <div class="row text-center" >
+                                    @if(Auth::User())
 
-                                    <div class="col-9 p-1 ps-3 fw-bold text-end ">
-                                        <a  style="color: gold;"   href="{{route("user.show",["id"=>Auth::user()->id])}}"  >
-                                            {{ Auth::user()->name }}
+                                        <a  style="color: gold;" class=" fw-bold "   href="{{route("user.show",["id"=>Auth::user()->id])}}"  >
+                                           <img id="params"  src="{{url("./imageUsers/".Auth::user()->photo)}}" />
                                         </a>
-                                    </div>
+                                    @endif
                                     <div class="col-3 text-end" >
                                         <a id="back" href="{{ url()->previous() }}"><img class="w-100" style="width: 40px" src="{{url("./images/icon/R.png")}}"></a>
                                     </div>
                                 </div>
-                            @endguest
+
                         </div>
                     </header>
                     <main  class=" p-5 text-white text-center">
-                        @yield("content")
+
+                        <div>
+                            @yield("content")
+                        </div>
+
                     </main>
                 </div>
             </div>

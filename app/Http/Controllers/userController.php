@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\rolesAjouterUser;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -39,12 +40,13 @@ class userController extends Controller
         $user->fonction = $request->role ;
 
         if($request->has('image')){
-            $t = explode(".", $request->image) ;
+            $image = $request->file('image') ;
 
-            $image = $request->image ;
-            $name = time().".".$t[count($t)-1];
 
-            Storage::disk("local")->put( $name ,$image) ;
+
+            $name = time().".".$image->extension();
+            $image->move("imageUsers" , $name) ;
+
             $user->photo = $name ;
         }
         $user->save() ;
@@ -57,6 +59,9 @@ class userController extends Controller
     public function show(int $id)
     {
         $user = User::select("*")->find($id) ;
+        if(!$user){
+            return  redirect()->back()->withErrors("Cette utilisateur n'existe pas") ;
+        }
         return view("profilUser",["user"=>$user]) ;
     }
 
@@ -81,8 +86,29 @@ class userController extends Controller
         $user->password =Hash::make($request->password) ;
         $user->tel = $request->tel ;
         $user->fonction = $request->role ;
+        if($request->admin == "admin"){
+            $user->role = 1 ;
+        }
+        elseif($request->admin == "user"){
+        $user->role = 0 ;
+        }
         $user->save() ;
         return redirect(route("users.index")) ;
+    }
+    public  function updatePhoto(Request $request){
+        $user = User::select("*")->find(Auth::user()->id);
+        if($request->has('image')){
+            $image = $request->file('image') ;
+
+
+
+            $name = time().".".$image->extension();
+            $image->move("imageUsers" , $name) ;
+
+            $user->photo = $name ;
+        }
+        $user->save();
+        return redirect()->back() ;
     }
 
     /**
@@ -90,6 +116,10 @@ class userController extends Controller
      */
     public function destroy(int $id)
     {
+        if($id == Auth::user()->id ){
+            User::where(['id'=>$id])->delete();
+             return redirect(route("login"));
+        }
         User::where(['id'=>$id])->delete();
         return redirect(route("users.index"))->with("success","user est supprimer avec succes") ;
 
