@@ -7,7 +7,7 @@
         <div class="col-6">
             <div class="form-group py-3 row">
                 <label class="col" for="nom">Nom :</label>
-                <input  type="text" class="form-control  col col" id="nom" aria-describedby="emailHelp" name="name" value="{{old("nom")}}" placeholder="Nom">
+                <input  type="text" class="form-control  col col" id="nom" aria-describedby="emailHelp" name="name" value="{{old("name")}}" placeholder="Nom">
                 @error("name")
                 <small  class="ms-3 form-text text-danger">{{$message}}</small>
                 @enderror
@@ -54,11 +54,11 @@
             <div class="form-group py-3 row">
                 <label  class="col">Fonction :</label>
                 <div class="col">
-                <input type="radio" class="form-check-input col-2" id="role1" value="Avocat" @if(old("role") == "Avocat" ) checked  @endif name="role"> Avocat
-                <input type="radio" class="form-check-input ms-5 col-2" id="role2"value="secrétaire" @if(old("role") == "secrétaire") checked  @endif  name="role"> secrétaire
+                <input type="radio" class="form-check-input col-2" id="role1" value="Avocat" @if(old("Fonction") == "Avocat" ) checked  @endif name="Fonction"> Avocat
+                <input type="radio" class="form-check-input ms-5 col-2" id="role2"value="secrétaire" @if(old("Fonction") == "secrétaire") checked  @endif  name="Fonction"> secrétaire
 
                 </div>
-                @error("role")
+                @error("Fonction")
                 <small  class="ms-3 form-text text-danger">{{$message}}</small>
                 @enderror
             </div>

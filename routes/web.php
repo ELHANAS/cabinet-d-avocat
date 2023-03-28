@@ -15,7 +15,9 @@ use \App\Http\Controllers\userController ;
 
 Route::match(['get', 'post'],'\ajax_user',[userController::class,'ajax_search'])->name("ajax_user");
 Route::get('/users',[userController::class,"index"] )->name("users.index");
-
+Route::get('/affaires',[\App\Http\Controllers\AffaireController::class,'index'])->name('afficherAffaire');
+Route::post('/ajax_search_affaire',[\App\Http\Controllers\AffaireController::class,'ajax_search_affaire'])->name('ajax_Affaire');
+Route::get('/affaire/update/etat/{affaire}',[\App\Http\Controllers\AffaireController::class,'updateEtat'])->name('affaire.update.etat');
 
 
 Route::get("/ajouterTache",function (){
@@ -29,9 +31,7 @@ Route::get('/ajouterUser', [userController::class,"create"]);
 
 
 
-Route::get('/affaires', function () {
-    return view('affaires');
-});
+
 
 Route::get('/taches', function () {
     return view('tache');
@@ -39,21 +39,15 @@ Route::get('/taches', function () {
 Route::get('/parametres', function () {
     return view('parametres');
 });
-Route::get('/User', function () {
-    return view('profilUser');
-});
 
-Route::get('/ajouterAffaire', function () {
-    return view('ajouterAffaire');
-});
+
+
 
 Route::any("/user/store",[userController::class,'store'])->name("user.store");
 
 
 
-    Route::get('/ajouterClient', function () {
-        return view('AjouterClient');
-    });
+
 
 Route::get('/filtreUser',[userController::class,"filtreUser"])->name("filtreUser")  ;
 Route::get('/users/{id}',[userController::class,"edit"])->name("user.edit")  ;

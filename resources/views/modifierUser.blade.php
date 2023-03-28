@@ -50,10 +50,10 @@
                     @enderror
                 </div>
                 <div class="form-group row p-3">
-                    <label  class="col">Rôle :</label>
+                    <label  class="col">Fonction :</label>
                     <div class="col">
-                        <input type="radio" class="form-check-input col-2" id="role1" value="Avocat" @if($user->fonction == "Avocat" ) checked  @endif name="role"> Avocat
-                        <input type="radio" class="form-check-input ms-5 col-2" id="role2"value="sec" @if($user->fonction  == "sec") checked  @endif  name="role"> sec
+                        <input type="radio" class="form-check-input col-2" id="role1" value="Avocat" @if($user->fonction == "Avocat" ) checked  @endif name="Fonction"> Avocat
+                        <input type="radio" class="form-check-input ms-5 col-2" id="role2"value="secrétaire" @if($user->fonction  == "secrétaire") checked  @endif  name="Fonction"> Secrétaire
 
                     </div>
                     @error("role")

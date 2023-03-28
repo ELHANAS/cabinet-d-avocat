@@ -37,16 +37,11 @@ class userController extends Controller
         $user->email = $request->email ;
         $user->password =Hash::make($request->password)  ;
         $user->tel = $request->tel ;
-        $user->fonction = $request->role ;
-
+        $user->fonction = $request->Fonction ;
         if($request->has('image')){
             $image = $request->file('image') ;
-
-
-
-            $name = time().".".$image->extension();
+            $name = $user->name.time().".".$image->extension();
             $image->move("imageUsers" , $name) ;
-
             $user->photo = $name ;
         }
         $user->save() ;
@@ -83,9 +78,9 @@ class userController extends Controller
         $user = User::select("*")->find($id) ;
         $user->name = $request->name ;
         $user->email = $request->email ;
-        $user->password =Hash::make($request->password) ;
+
         $user->tel = $request->tel ;
-        $user->fonction = $request->role ;
+        $user->fonction = $request->Fonction ;
         if($request->admin == "admin"){
             $user->role = 1 ;
         }
@@ -130,11 +125,11 @@ class userController extends Controller
             $searchClient=$request->searchClient;
             $data=User::where("name","like","%{$searchClient}%")->orderby("id","ASC")->get();
             return view('ajax_search_user',['data'=>$data]);
-        }}
+        }
+    }
     public  function  filtreUser(Request $request){
         $role = $request->filtreRole ;
-    $data=User::where(["fonction"=>$role])->get() ;
-
-    return view("listeUsers",["users"=>$data]) ;
-}
+        $data=User::where(["fonction"=>$role])->get() ;
+        return view("listeUsers",["users"=>$data]) ;
+    }
 }

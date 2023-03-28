@@ -17,9 +17,18 @@ class AffaireFactory extends Factory
     public function definition(): array
     {
         return [
-            "id"=> fake()->numberBetween(123,134353) ,
-            "name" => fake()->title(),
-            ""
+
+                'name'=>fake()->name(),
+                'nomber'=>fake()->numberBetween(1,20) ,
+                'adversaire'=>fake()->name(),
+                'prix'=>fake()->numberBetween(0,1000),
+                'jugement'=>fake()->name(),
+                'jugementDate'=>fake()->date(),
+                'type'=>fake()->name(),
+                'etat'=>fake()->boolean() ,
+                 'id_client'=>fake()->numberBetween(1,20) ,
+             'id_user'=>fake()->numberBetween(1,20),
+
         ];
     }
 }
