@@ -15,15 +15,16 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('nomber');
-            $table->integer('prix');
-            $table->string('adversaire');
-            $table->string('jugement');
-            $table->date('jugementDate');
+            $table->integer('prix')->default(0);
+            $table->string('adversaire')->nullable();
+            $table->string('jugement')->nullable();
+            $table->date('jugementDate')->nullable();
 
             $table->string('type');
-            $table->boolean('etat');
+            $table->boolean('etat')->default(0);
             $table->integer('id_client');
             $table->integer('id_user');
+            $table->text("document")->nullable();
             $table->timestamps();
         });
     }

@@ -2,91 +2,95 @@
 
 @section('content')
     <div class="p-5" style="height:100%;background: #7A6C21">
-        <form class="row">
+        <form class="row" enctype="multipart/form-data" method="post"action="{{route('create-store-affaire')}}">
+            {{csrf_field()}}
             <div class="col-6">
                 <div class="form-group row">
-                    <label class="form-label col-4 text-end" for="nom">Numero d'affaires</label>
-                    <input  type="Number" class="form-control   col" id="number" aria-describedby="emailHelp" name="number" placeholder="numero d'affaire">
-                    <small  class="ms-3 form-text text-danger">error.</small>
+                    <label class="form-label col-4 text-end" for="numero">Numero d'affaires</label>
+                    <input  type="Number" class="form-control   col" id="numero" aria-describedby="emailHelp" name="numero" placeholder="numero d'affaire">
+                    @error('numero')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
                 </div>
-                <div class="form-group  row">
-                    <label class=" form-label col-4 text-end" for="userName"> Name : </label>
-                    <input type="text" class="form-control  col" name="affair" id="affireName" placeholder="entrer your affaire Name ...">
-                    <small  class="ms-3 form-text text-danger">error.</small>
+                <div class="form-group  row mt-3">
+                    <label class=" form-label col-4 text-end" for="userName"> nome-d'affaire : </label>
+                    <input type="text" class="form-control  col" name="Nameaffair" id="affireName" placeholder="entrer your affaire Name ...">
+                    @error('Nameaffair')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
                 </div>
-                <div class="form- row">
-                    <label  class="form-label col-4 text-end" for="exampleCheck1">TYPE :</label>
-                    <div class="col">
-                        <select class="form-select " style="width: 280px">
-                            <option value="">choisir un  type </option>
-                            <option value="type1">type1</option>
-                            <option value="type2">type2</option>
-                        </select>
-                    </div>
+                <div class="form- row mt-3">
+                    <label  class="form-label col-4 text-end" for="exampleCheck1">TYPE:</label>
 
-                    <small  class="ms-3 form-text text-danger">error.</small>
-                </div>
-                <div class="form-group row">
-                    <label class="form-label col-4 text-end" for="exampleCheck1">CLIENT :</label>
-                    <div class="col">
-                        <select class="form-control " style="width: 280px">
-                            <option value="">choisir un  CLIENT </option>
-                            <option value="CLIENT1">CLIENT1</option>
-                            <option value="CLIENT2">CLIENT2</option>
+                        <select class="form-select col " style="width: 280px" name="typeAffaire">
+                            <option value="">choisir un  type </option>
+                            <option value="Problèmes administratifs">Problèmes administratifs</option>
+                            <option value="Problèmes commerciaux">Problèmes commerciaux</option>
+                            <option value="Affaires civiles">Affaires civiles</option>
+                            <option value="Délits, procès-verbaux et plaintes"> Délits, procès-verbaux et plaintes</option>
+                            <option value="Affaires civiles">Affaires civiles</option>
+
+
                         </select>
-                    </div>
-                    <small  class="ms-3 form-text text-danger">error.</small>
+
+
                 </div>
-                <div class="form-group row">
-                    <label class="form-label col-4 text-end" for="photo">document :</label>
-                    <input type="file" class="form-control col" id="document" name="document">
-                    <small  class="ms-3 form-text text-danger">error.</small>
+                <div class="form-group row mt-3">
+                    <label class="form-label col-4 text-end" for="exampleCheck1">name-client :</label>
+
+                        <input class="form-control col" list="datalistOptions" name="nameclient" placeholder="entrer name..">
+                        <datalist id="datalistOptions">
+                            @foreach($dataclient as $client)
+                            <option value="{{$client->name}}">
+                        @endforeach
+
+
+                        </datalist>
+                    @error('nameclient')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
                 </div>
+                <div class="form-group row mt-3">
+                    <label class="form-label col-4 text-end" for="avocat">name-avocat :</label>
+
+                    <input class="form-control col" list="avocat" name="avocat" placeholder="entrer name..">
+                    <datalist id="avocat">
+                        @foreach($dataavocat as $avocat)
+                            <option value="{{$avocat->name}}">
+                        @endforeach
+                    </datalist>
+                    @error('avocat')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
+
             </div>
 
 
             <div class="col-6">
-                <div class="form-group row">
+                <div class="form-group row mt-3">
                     <label for="prenom"  class="form-label col-4 text-end">Adverssaires:</label>
                     <input type="text" class="form-control col" id="adverssaire"  name="adverssaire" placeholder="entrer adverssaire ..">
-                    <small  class="ms-3 form-text text-danger">error.</small>
+
                 </div>
-                <div class="form-group row">
-                    <label for="Telephone" class="form-label col-4 text-end">jugement : </label>
+                <div class="form-group row mt-3">
+                    <label for="Telephone" class="form-label col-4  text-end">jugement : </label>
                     <input type="text" class="form-control col" id="jugement" name="jugement" placeholder="jugement ...">
-                    <small  class="ms-3 form-text text-danger">error.</small>
+
                 </div>
-                <div class="form-group row">
+                <div class="form-group row mt-3">
                     <label  class="form-label col-4 text-end">Date de jugement :</label>
-                    <div class="col">
+
                         <input type="date"  style="width: 270px; height: 35px" class="form-contro col " id="jugement_date" name="jugement_date"/>
-                    </div>
-                </div>
-                <div class="form-group row" style="margin-top: 20px">
-                    <label  class="form-label col-4 text-end" for="exampleCheck1">etat :</label>
-                    <div class="col">
-                        <select class="form-control " style="width: 280px">
-                            <option value="">choisir un  etat </option>
-                            <option value="eta">etat</option>
-                        </select>
-                    </div>
-                    <small  class="ms-3 form-text text-danger">error.</small>
-                </div>
-                <div class="form-group row">
-                    <label  class="form-label col-4 text-end" for="exampleCheck1"> avocat  :</label>
-                    <div class="col">
-                        <select class="form-control " style="width: 280px">
-                            <option value="">choisir un  avocat </option>
-                            <option value="anas elhandouz">anas elhandouz</option>
-                        </select>
-                    </div>
-
-
-                    <small  class="ms-3 form-text text-danger">error.</small>
 
                 </div>
+                <div class="form-group row mt-3 ">
+                    <label class="form-label col-4 text-end" for="photo">document :</label>
+                    <input type="file" class="form-control col" multiple id="document" name="document[]">
 
-            </div>
+                </div>
+                </div>
+
             <button type="submit" class="btn mt-2 m-auto " style="width:100px;background: black;
             color:gold;border-radius: 30px;border: 1px solid gold">Ajouter</button>
         </form>

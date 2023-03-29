@@ -164,7 +164,7 @@ display: inline-block;
                         <li class="text-start"><a class="@yield("Affairs")"  href="/affaires">
                                 <img class="icon" src="{{url("./images/icon/balance-2858897_128033.png")}}" alt="">
                                 Affaires</a></li>
-                        <li class="text-start"><a class="@yield("Taches")"  href="/taches">
+                        <li class="text-start"><a class="@yield("Taches")"  href="/Taches">
                                 <img class="icon" style="color:gold" src="{{url("./images/icon/pngimg.com - gavel_PNG29.png")}}" alt="">
                                 Tâches</a></li>
                     </ul>

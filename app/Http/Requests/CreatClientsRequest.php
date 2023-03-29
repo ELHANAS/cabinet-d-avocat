@@ -26,9 +26,7 @@ class CreatClientsRequest extends FormRequest
 
             return [
 
-                'nom'=>"required",
-                'Prenom'=>"required",
-                'activiter'=>"required",
+                'name'=>"required",
                 'tel'=>"required",
                 'CIN'=>"required",
                 'Adress'=>"required",
@@ -41,9 +39,7 @@ class CreatClientsRequest extends FormRequest
     public function messages()
     {
         return [
-            'nom'=>'le nome de travailles et obligatoire',
-            'activiter'=>'choisir un activiter ',
-            'Prenom'=>'le prenom et obligatoire',
+            'name'=>'le nome de travailles et obligatoire',
             'tel'=>'le nombre de tele et obligatoire',
             'CIN'=>'le numero cin obligatoire',
             'Adress'=>'ladress et obligatoire',

@@ -54,11 +54,10 @@
                             <thead>
                             <tr>
                                 <th scope="col">Code</th>
-                                <th scope="col">Nom</th>
-                                <th scope="col">Prenom</th>
+                                <th scope="col">Name</th>
                                 <th scope="col">Active</th>
                                 <th scope="col">Ville</th>
-                                <th scope="col"> actions</th>
+                                <th scope="col"> </th>
                             </tr>
                             </thead>
                             <tbody>
@@ -67,8 +66,7 @@
                                     <tr>
 
                                         <td>{{$info->id}}</td>
-                                        <td>{{$info->nom}}</td>
-                                        <td>{{$info->prenom}}</td>
+                                        <td>{{$info->name}}</td>
                                         <td>@if($info->active==1) Active @else not active @endif</td>
                                         <td>{{$info->ville}}</td>
                                         <td>

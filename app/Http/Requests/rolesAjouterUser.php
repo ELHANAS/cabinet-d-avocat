@@ -22,12 +22,11 @@ class rolesAjouterUser extends FormRequest
     public function rules(): array
     {
         return [
-        "nom" => 'required|max:40',
-        "prenom"  => 'required|max:40',
-        "userName"  => 'required|max:100',
+        "name" => 'required|max:40',
         "password" => 'required|max:40|min:5',
-        "tel" => 'required|max:12|min:8',
-        "role"  => 'required',
+        "email" => 'required',
+        "tel" => 'required',
+        "Fonction"  => 'required',
 
         ];
     }

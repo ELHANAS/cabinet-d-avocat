@@ -17,8 +17,7 @@ class clientFactory extends Factory
     public function definition()
     {
         return [
-            'nom'=>fake()->name(),
-            'prenom'=>fake()->lastName(),
+            'name'=>fake()->name(),
             'adresse'=>fake()->address(),
             'ville'=>fake()->city(),
             'tel'=>fake()->phoneNumber(),

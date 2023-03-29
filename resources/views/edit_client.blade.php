@@ -1,4 +1,4 @@
-@extends("./resource/index")
+name@extends("./resource/index")
 @section("content")
     <body>
     <div class="p-5" style="background: #7A6C21">
@@ -6,19 +6,13 @@
             @csrf
             <div class="col-6">
                 <div class="form-group  row">
-                    <label class="col" for="userName">Name : </label>
-                    <input type="text" class="form-control col col" id="nom"  value="{{old('nom',$data['nom'])}}" name="nom" placeholder="entrer your  Name ...">
-                    @error('nom')
+                    <label class="col" for="client">Name : </label>
+                    <input type="text" class="form-control col col" id="client"  value="{{old('name',$data['name'])}}" name="nom" placeholder="entrer your  Name ...">
+                    @error('name')
                     <span class="text-danger">{{$message}}</span>
                     @enderror
                 </div>
-                <div class="form- row" style="margin-top: 30px">
-                    <label class="col" class="form-label" for="exampleCheck1">Prenom :</label>
-                    <input type="text" class="form-control col col" id="Prenom" name="Prenom" value="{{old('Prenom',$data['prenom'])}}">
-                    @error('Prenom')
-                    <span class="text-danger">{{$message}}</span>
-                    @enderror
-                </div>
+
                 <div class="form-group row" style="margin-top: 30px"> <label class="form-label col" for="tele">Telephone :</label>
                     <input type="tel" class="form-control col" id="tel" name="tel" value="{{old("tel", $data['tel'])}}">
                     @error('tel')

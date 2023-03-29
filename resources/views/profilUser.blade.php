@@ -5,7 +5,9 @@
 background-size: cover;border-radius: 20px  ; width: 700px ; border: 3px #FFD700 solid '>
         <div class="row d-flex justify-content-around">
             <div class="col-auto" style="position: relative">
+
                 <img src="{{url("./imageUsers/$user->photo")}}" style="width: 150px;height: 150px;border-radius: 50%;border: 3px solid gold"/>
+
                 @if( Auth::User()->id == $user->id)
                     <form method="post" enctype="multipart/form-data"  action="{{route("updatePhotoUser")}}">
                         {{csrf_field()}}

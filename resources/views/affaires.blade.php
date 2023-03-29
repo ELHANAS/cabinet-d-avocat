@@ -3,11 +3,21 @@
 @section('content')
 <div  >
     <div>
+        @if(Session::has('success'))
+            <div class="alert alert-success" role="alert">
+                {{ Session::get('success') }}
+            </div>
+        @endif
+        @if(Session::has('error'))
+            <div class="alert alert-danger" role="alert">
+                {{ Session::get('error ') }}
+            </div>
+        @endif
         <form class="form-inline">
             <div class="row p-0 ms-3  d-flex justify-content-between">
                 <div class="col-6 row  p-0 border d-flex justify-content-around" >
 
-                        <a href="" class="btn col-3 border " style="background: gold">Ajouter</a>
+                        <a href="{{route('create-affaires')}}" class="btn col-3 border " style="background: gold">Ajouter</a>
 
                     <div class=" col-4">
                         <select class="form-select text-white " style="background: goldenrod">
@@ -60,7 +70,7 @@
             <tr>
                 <th scope="row">{{$info->nomber}}</th>
                 <td>{{$info->nameAffaire}}</td>
-                <td>{{$info->nom}} {{$info->prenom}}</td>
+                <td>{{$info->nameClient}}</td>
                 <td>{{$info->nameUser}}</td>
                 <td>{{$info->type}}</td>
                 <td  >

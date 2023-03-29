@@ -30,7 +30,7 @@ class userController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(rolesAjouterUser $request)
     {
         $user = new User();
         $user->name = $request->name ;
@@ -72,7 +72,7 @@ class userController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, int $id)
+    public function update(rolesAjouterUser $request, int $id)
     {
 
         $user = User::select("*")->find($id) ;

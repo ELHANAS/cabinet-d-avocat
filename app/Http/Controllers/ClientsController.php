@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 use App\Models\Client;
 use App\Http\Requests\CreatClientsRequest;
-use App\Http\Requests\updatClientRequest;
 
 ;
 
@@ -22,14 +21,12 @@ class ClientsController extends Controller
 
     }
     function store(CreatClientsRequest $request){
-
-        $data['nom'] = $request->input('nom');
-        $data['prenom'] = $request->input('Prenom');
+        $dataupdate['name']=$request->input('name');
         $data['adresse'] = $request->input('Adress');
         $data['ville'] = $request->input('Ville');
         $data['tel'] = $request->input('tel');
         $data['cin'] = $request->input('CIN');
-        $data['active']= $request->input('activiter');
+        $data['active']= 0;
         $data['datenaissance'] = $request->input('dat_naiss');
         $data['create_at']= date("Y-m-d H:i:s");
         $data['update_at']= date("Y-m-d H:i:s");
@@ -43,9 +40,9 @@ class ClientsController extends Controller
         $data=Client::select("*")->find($id);
         return view('edit_client' ,['data'=>$data]);
     }
-    function update($id,updatClientRequest $request){
-        $dataupdate['nom']=$request->input('nom');
-        $dataupdate['prenom'] = $request->input('Prenom');
+    function update($id,CreatClientsRequest $request){
+        $dataupdate['name']=$request->input('name');
+
         $dataupdate['adresse'] = $request->input('Adress');
         $dataupdate['ville'] = $request->input('Ville');
         $dataupdate['tel'] = $request->input('tel');
@@ -65,7 +62,7 @@ class ClientsController extends Controller
     function ajax_search_client(Request $request){
         if($request->ajax()){
             $searchClient=$request->searchClient;
-            $data=Client::where("nom","like","%{$searchClient}%")->orderby("id","ASC")->get();
+            $data=Client::where("name","like","%{$searchClient}%")->orderby("id","ASC")->get();
             return view('ajax_search_client',['data'=>$data]);
 
         }

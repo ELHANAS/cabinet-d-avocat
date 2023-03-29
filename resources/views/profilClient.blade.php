@@ -7,10 +7,9 @@ background-size: cover ; height: 700px ; width: 700px ; border: 3px #FFD700 soli
             <div class="row d-flex justify-content-around">
                 <div class="col-auto" style="margin-top: 30px">
                     <img src="{{url("./images/icon/360_F_503577073_y4ZwKcQttFbUut0A7InyK8LhS3ObKL2t.jpg")}}" style="width: 150px;height: 150px;border-radius: 50%;"/>
-                    <h3 style="color:#FFD700;">{{$data->nom}} {{$data->prenom}}</h3>
+                    <h3 style="color:#FFD700;">{{$data->name}} </h3>
                 </div>
                 <div class="col-auto" style="margin-top: 50px ; color:#FFD700">
-                    <p>{{$data->nom}} {{$data->prenom}} </p>
                     <p> <img src="{{url("./images/icon/stock-vector-black-telephone-auricular-gold-plated.jpg")}}" style="width: 30px;height: 30px"/>{{$data->tel}}</p>
                     <p>Ville : {{$data->ville}}</p>
                     <p>date de naissance: {{$data->datenaissance}} </p>

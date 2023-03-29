@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Affaire;
 use App\Models\User;
+use App\Models\Client;
+use App\Http\Requests\CreatAffaireRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -22,17 +24,47 @@ class AffaireController extends Controller
      */
     public function create()
     {
-        //
+        $avocats=DB::select("select * from users where fonction = 'Avocat'") ;
+        $dataclient=Client::all();
+
+
+        return view("ajouterAffaire",['dataavocat'=>$avocats,'dataclient'=>$dataclient]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreatAffaireRequest $request)
     {
-        //
-    }
+        $data = new Affaire();
+        $data->nomber = $request->input('numero');
+        $data->name = $request->input('Nameaffair');
+        $data->type = $request->input('typeAffaire');
+        $nameClient =$request->input('nameclient');
+        $dataC=DB::table("clients")->where(["name" => $nameClient ])->first();
 
+
+        $data->id_client=$dataC->id;
+        $nameavocat = $request->input('avocat');
+        $dataU=DB::table("users")->where(["name" => $nameavocat ])->first();
+
+        $data->id_user=$dataU->id;
+        $docs = "" ;
+        if($request->hasFile('document')){
+            $documents= $request->file('document') ;
+            foreach ( $documents as $document){
+                $name = rand(1,100000).time().".".$document->extension();
+                $document->move("documentaffaires" , $name) ;
+                $docs = $docs.$name."//" ;
+            }
+        }
+
+        $data->document = $docs ;
+
+        $data->save();
+        return redirect()->route("afficherAffaire")->with(['success'=>'Added sucsusful']);
+
+    }
     /**
      * Display the specified resource.
      */

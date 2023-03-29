@@ -6,19 +6,13 @@
             @csrf
             <div class="col-6">
                 <div class="form-group  row">
-                    <label class="col" for="userName">Name : </label>
-                    <input type="text" class="form-control  col" id="nom"  value="{{old("nom")}}" name="nom" placeholder="entrer your  Name ...">
-                    @error('nom')
+                    <label class="col" for="name">Name : </label>
+                    <input type="text" class="form-control  col" id="name"  value="{{old("name")}}" name="name" placeholder="entrer your  Name ...">
+                    @error('name')
                     <span class="text-danger">{{$message}}</span>
                     @enderror
                 </div>
-                <div class="form-group row" style="margin-top: 30px">
-                    <label class="col" class="form-label" for="exampleCheck1">Prenom :</label>
-                    <input type="text" class="form-control col col" id="Prenom" name="Prenom" value="{{old("Prenom")}}">
-                    @error('Prenom')
-                    <span class="text-danger">{{$message}}</span>
-                    @enderror
-                </div>
+
                 <div class="form-group row" style="margin-top: 30px"> <label class="form-label col" for="tele">Telephone :</label>
                     <input type="tel" class="form-control col" id="tel" name="tel" value="{{old("tel")}}">
                     @error('tel')
@@ -26,19 +20,7 @@
                     @enderror
 
                 </div>
-                <div class="form-group row" style="margin-top: 30px">
 
-                    <label for="activiter" class="form-label col">Activite:</label>
-                    <select name="activiter" class="form-control col">
-                        <option value="" > les activiteé</option>
-                        <option @if(old('activiter')==1) selected @endif value="1">yes</option>
-                        <option @if(old('activiter')==0 and old('activiter')!='' ) selected @endif value="0">no</option>
-                    </select>
-                    @error('activiter')
-                    <span class="text-danger">{{$message}}</span>
-                    @enderror
-
-                </div>
             </div>
             <div class="col-6">
                 <div class="form-group row"> <label for="adress" class="col">Adress:</label>
