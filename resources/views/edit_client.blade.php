@@ -1,7 +1,7 @@
 name@extends("./resource/index")
 @section("content")
     <body>
-    <div class="p-5" style="background: #7A6C21">
+    <div class="p-5" style="background: {{\App\Models\Color::getColors()->bgMain}}">
         <form class="row" method="post" action="{{route('updatclient',$data['id'])}}">
             @csrf
             <div class="col-6">
@@ -67,7 +67,7 @@ name@extends("./resource/index")
                     </div>
                 </div>
 
-            </div> <button type="submit" class="btn mt-5 m-auto w-25" style="background: white;border-radius: 30px;border: 1px solid gold">Submit</button>
+            </div> <button type="submit" class="btn mt-5 m-auto w-25" style="background:     {{\App\Models\Color::getColors()->textBtn}};;border-radius: 30px;border: 1px solid   {{\App\Models\Color::getColors()->textBtn}};">Modifier</button>
         </form>
     </div>
     </body>
@@ -75,4 +75,9 @@ name@extends("./resource/index")
 
 @endsection
 @section("titre","update client")
-@section("clients","text-white border-bottom ")
+@section("clients")
+    background:{{\App\Models\Color::getColors()->textHeader}};
+    color: {{\App\Models\Color::getColors()->bgHeader}};
+@endsection
+
+

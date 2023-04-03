@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Affaire;
 use App\Models\Tache;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -63,5 +64,20 @@ class TacheController extends Controller
     public function destroy(Tache $tache)
     {
         //
+    }
+
+    public  function ajax_search_Tache(Request $request){
+
+        if($request->ajax()){
+            $searchTach=$request->searchTache;
+
+            $data=DB::table('taches')
+                ->join('affaires', 'affaires.id', '=', 'taches.id_affaire')
+                ->select('taches.*','affaires.name')
+                ->where("titre","like","%$searchTach%")
+                ->get();
+
+            return view('ajax_search_tache',['taches'=>$data]);
+        }
     }
 }

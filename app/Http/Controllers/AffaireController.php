@@ -70,7 +70,10 @@ class AffaireController extends Controller
      */
     public function show(Affaire $affaire)
     {
-        //
+        $doc = explode("//",$affaire->document)  ;
+        $documents = array_slice($doc,0,count($doc)- 1) ;
+
+        return view("detailAffaire",["affaire" => $affaire , "documents" => $documents]) ;
     }
 
     /**
@@ -78,30 +81,69 @@ class AffaireController extends Controller
      */
     public function edit(Affaire $affaire)
     {
-        //
+        $avocats=DB::select("select * from users where fonction = 'Avocat'") ;
+        $dataclient=Client::all();
+
+        Return view("modifierAffaire",["data" => $affaire , 'dataavocat'=>$avocats,'dataclient'=>$dataclient]) ;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Affaire $affaire)
+    public function update(CreatAffaireRequest $request, Affaire $affaire)
     {
-        //
+
+
+        $affaire->nomber = $request->input('numero');
+        $affaire->name = $request->input('Nameaffair');
+        $affaire->type = $request->input('typeAffaire');
+        $nameClient =$request->input('nameclient');
+        $dataC=DB::table("clients")->where(["name" => $nameClient ])->first();
+
+        $affaire->id_client=$dataC->id;
+        $nameavocat = $request->input('avocat');
+        $dataU=DB::table("users")->where(["name" => $nameavocat ])->first();
+        $affaire->id_user=$dataU->id;
+        $affaire->save();
+        return redirect()->route("afficherAffaire")->with(['success'=>'update  successfully']);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Affaire $affaire)
-    {
-        //
+    public function destroy(Affaire $affaire){
+        $affaire->delete();
+        return redirect()->route("afficherAffaire")->with(['success'=>'delete  successfully']);
+
     }
     public  function ajax_search_affaire(Request $request){
         if($request->ajax()){
             $searchAffaire=$request->searchAffaire;
-            $data=Affaire::where("name","like","%{$searchAffaire}%")->orderby("id","ASC")->get();
+            $data=DB::table('affaires')
+                ->join('users', 'users.id', '=', 'affaires.id_user')
+                ->join('clients', 'clients.id', '=', 'affaires.id_client')
+                ->select('affaires.*','users.name As nameUser','clients.name As nameClient')
+                ->where("affaires.name","like","%$searchAffaire%")
+                ->get();
             return view('ajax_search_affaire',['Affaires'=>$data]);
         }
+
+    }
+    public  function  storeDocument(Request $request){
+        $affaire = Affaire::select("*")->find($request->id) ;
+
+        $docs = $affaire->document ;
+        if($request->hasFile('document')){
+            $documents= $request->file('document') ;
+            foreach ( $documents as $document){
+                $name = rand(1,100000).time().".".$document->extension();
+                $document->move("documentaffaires" , $name) ;
+                $docs = $docs.$name."//" ;
+            }
+        }
+        $affaire->document = $docs ;
+        $affaire->save();
+        return redirect()->back() ;
     }
     public function  updateEtat(Affaire $affaire)
     {
@@ -113,5 +155,21 @@ class AffaireController extends Controller
         }
         $affaire->save();
         return redirect()->back() ;
+    }
+    public function deleteFile($doc,$id)
+    {
+
+        $affaire = Affaire::select("*")->find($id) ;
+        $docs = explode("//",$affaire->document)  ;
+
+        $documents = array_slice($docs,0,count($docs)- 1) ;
+        $newDocument = array_diff( $documents, [$doc]);
+        $newFile =  "" ;
+        foreach ($newDocument as $new) {
+            $newFile =  $newFile.$new."//" ;
+        }
+        $affaire->document = $newFile  ;
+        $affaire->save();
+        return redirect()->back();
     }
 }

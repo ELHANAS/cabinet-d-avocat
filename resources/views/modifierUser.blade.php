@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="p-5" style="height:100%;background: #7A6C21">
+    <div class="p-5" style="height:100%;background: {{\App\Models\Color::getColors()->bgMain}}">
         <form class="row"  action="{{route("user.modifier",["id"=>$user->id])}}">
             <div class="col-6">
                 <div class="form-group row p-3">
@@ -62,11 +62,14 @@
                 </div>
 
             </div>
-            <button type="submit" class="btn mt-5 m-auto  " style="width: 100px;background: black;color:gold;border-radius: 30px;border: 1px solid gold">Modifier</button>
+            <button type="submit" class="btn mt-5 m-auto  " style="width: 100px;background: {{\App\Models\Color::getColors()->textBtn}};color:{{\App\Models\Color::getColors()->bgBtn}};border-radius: 30px;border: 1px solid {{\App\Models\Color::getColors()->textBtn}}">Modifier</button>
         </form>
     </div>
 @endsection
-@section("user","text-white border-bottom ")
+@section("user")
+    background:{{\App\Models\Color::getColors()->textHeader}};
+    color: {{\App\Models\Color::getColors()->bgHeader}};
+@endsection
 
 @section("titre","Modifier user")
 

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="p-5" style="height:100%;background: #7A6C21">
+    <div class="p-5" style="height:100%;background: {{\App\Models\Color::getColors()->bgMain}};color: {{\App\Models\Color::getColors()->textMain}}">
     <form class="row" enctype="multipart/form-data" method="post" action="{{ route('user.store') }}">
         {{ csrf_field() }}
         <div class="col-6">
@@ -20,17 +20,15 @@
                 @enderror
             </div>
             <div class="form-group py-3 row">
-                <label class="col" class="form-label" for="exampleCheck1">Mot de passe :</label>
-                <input type="password" class="form-control col col" id="password"  placeholder="entrer your password..." name="password">
+                <label class="form-label col" for="exampleCheck1">Mot de passe :</label>
+                <input type="password" class="form-control  col" id="password"  placeholder="entrer your password..." name="password">
                 @error("password")
                 <small  class="ms-3 form-text text-danger">{{$message}}</small>
                 @enderror
             </div>
             <div class="form-group py-3 row">
                 <label class="form-label col" for="photo">photo :</label>
-                <label for="image" class="col" ><img style="width: 40px" src="{{url("./images/icon/211092.png")}}" alt="photo"></label>
-                <span id="strImage"></span>
-                <input type="file" hidden   id="image" name="image">
+                <input type="file" class="form-control col"    id="image" name="image">
                 @error("image")
                 <small  class="ms-3 form-text text-danger">{{$message}}</small>
                 @enderror
@@ -65,11 +63,19 @@
 
 
         </div>
-        <button type="submit" class="btn mt-5 m-auto  " style="width: 100px;background: black;color:gold;border-radius: 30px;border: 1px solid gold">Ajouter</button>
+        <button type="submit" class="btn mt-5 m-auto  " style="width: 200px;background: {{\App\Models\Color::getColors()->textBtn}};color:{{\App\Models\Color::getColors()->bgBtn}};border-radius: 30px;
+        border: 1px solid     {{\App\Models\Color::getColors()->bgBtn}}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-all" viewBox="0 0 16 16">
+                <path d="M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992a.252.252 0 0 1 .02-.022zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486-.943 1.179z"/>
+            </svg>
+            Enregistrer</button>
     </form>
     </div>
 @endsection
 
-@section("user","text-white border-bottom ")
+@section("user")
+    background:{{\App\Models\Color::getColors()->textHeader}};
+    color: {{\App\Models\Color::getColors()->bgHeader}};
+@endsection
 
 @section("titre","Ajouter user")

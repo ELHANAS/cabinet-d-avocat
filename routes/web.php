@@ -21,7 +21,7 @@ Route::get("/Taches",[TacheController::class,"index"])->name("taches") ;
 Route::get("/ajouterTache",function (){
     return view("ajouterTache") ;
 }) ;
-
+Route::post("/Taches_search_ajax",[TacheController::class,"ajax_search_Tache"])->name("ajax_Tache") ;
 
 
 /* Routes Users */
@@ -54,6 +54,12 @@ Route::post('/ajax_search_affaire',[\App\Http\Controllers\AffaireController::cla
 Route::get('/affaire/update/etat/{affaire}',[\App\Http\Controllers\AffaireController::class,'updateEtat'])->name('affaire.update.etat');
 Route::get('/affaire/create',[\App\Http\Controllers\AffaireController::class,'create'])->name("create-affaires");
 Route::post('/affaire/create/store',[\App\Http\Controllers\AffaireController::class,'store'])->name("create-store-affaire");
+Route::get('/affaire/show/{affaire}',[\App\Http\Controllers\AffaireController::class,'show'])->name("show.affaire");
+Route::post('/affaire/docement/store',[\App\Http\Controllers\AffaireController::class,'storeDocument'])->name("document-store-affaire");
+Route::get('/affaire/docement/delete/{doc}/{id}',[\App\Http\Controllers\AffaireController::class,'deleteFile'])->name("document-delete");
+Route::get('/Affaires/modifier/{affaire}',[\App\Http\Controllers\AffaireController::class,"edit"])->name("Affaires.modifier") ;
+Route::get('/affaire/destroy/{affaire}',[\App\Http\Controllers\AffaireController::class,'destroy'])->name("affaire.destory");
+Route::get("/affaire/update/{affaire}",[\App\Http\Controllers\AffaireController::class,"update"])->name("updataffaires");
 
 /* Routes Home */
 Auth::routes();
@@ -69,7 +75,9 @@ Route::get('/parametres', function () {
 
 
 
+/* Routes Color */
 
+Route::get("/colors/{id}",[\App\Http\Controllers\ColorController::class,'store'])->name("color.store") ;
 
 
 

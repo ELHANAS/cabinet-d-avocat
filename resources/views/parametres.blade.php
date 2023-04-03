@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div >x
-        <form>
+    <div class="p-5"  style="color: {{\App\Models\Color::getColors()->textMain}};background: {{\App\Models\Color::getColors()->bgMain}} ;position: relative">
+
             <div class="row w-50 d-flex justify-content-start">
                 <label class="form-label col-4 text-end p-1 fw-bold">launges  :</label>
                 <div class="col-lg-5">
@@ -12,19 +12,28 @@
                 </select>
                 </div>
             </div>
-
-            <div  class="row mt-5 d-flex justify-content-around">
-                <div class="bg-dark col-3 p-5 fw-bold" style="color: gold">
-                    style A
-                </div>
-                <div class="bg-white col-3 p-5 fw-bold" style="color: black">
-                    style B
-                </div>
-                <div class="bg-primary col-3 p-5 fw-bold" style="color: white">
-                    style C
-                </div>
+        <div class="row d-flex justify-content-between mt-5 p-5">
+            <div class="col-3 border" style="background: black">
+                <a href="{{route("color.store",1)}}">
+                <img class="w-100 mt-2" style="height: 70%" src="{{url("./images/backgourndmain.png")}}" alt="photo">
+                <span class="h5 fw-bold" style="color: gold"> Or </span>
+                </a>
             </div>
-        </form>
+            <div class="col-3 border" style="background: #313131">
+                <a href="{{route("color.store",2)}}">
+                <img class="w-100 mt-2" style="height: 70% " src="{{url("./images/113239-popular-light-gray-background-2560x1600.jpg")}}" alt="">
+                    <span class="h5 fw-bold" style="color: white"> Gris </span>
+                </a>
+            </div>
+            <div class="col-3 border" style="background: #1b6535">
+                <a href="{{route("color.store",3)}}">
+                <img class="w-100 mt-2" style="height: 70%" src="{{url("./images/backgroundGrinBody.jpg")}}" alt="">
+                <span class="h5 fw-bold" style="color: white"> Green </span>
+                </a>
+            </div>
+
+        </div>
+
     </div>
 @endsection
 @section("titre","parametres")
