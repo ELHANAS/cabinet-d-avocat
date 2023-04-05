@@ -60,6 +60,7 @@ Route::get('/affaire/docement/delete/{doc}/{id}',[\App\Http\Controllers\AffaireC
 Route::get('/Affaires/modifier/{affaire}',[\App\Http\Controllers\AffaireController::class,"edit"])->name("Affaires.modifier") ;
 Route::get('/affaire/destroy/{affaire}',[\App\Http\Controllers\AffaireController::class,'destroy'])->name("affaire.destory");
 Route::get("/affaire/update/{affaire}",[\App\Http\Controllers\AffaireController::class,"update"])->name("updataffaires");
+Route::get("/affaire/filtrer",[\App\Http\Controllers\AffaireController::class,"affaires_type"])->name("affaire.filtrer");
 
 /* Routes Home */
 Auth::routes();

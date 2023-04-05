@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\rolesAjouterUser;
+use App\Models\Affaire;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
@@ -53,11 +54,14 @@ class userController extends Controller
      */
     public function show(int $id)
     {
+        $taches = User::getTachesAvocat($id);
+        $affaires = User::getAffairesAvocat($id) ;
+        $clients = User::getClientAvocat($id) ;
         $user = User::select("*")->find($id) ;
         if(!$user){
             return  redirect()->back()->withErrors("Cette utilisateur n'existe pas") ;
         }
-        return view("profilUser",["user"=>$user]) ;
+        return view("profilUser",["user"=>$user , "NAffaires" => count( $affaires ) , "NClients" =>count( $clients) , "NTaches" => count($taches)]) ;
     }
 
     /**

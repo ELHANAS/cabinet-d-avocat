@@ -42,24 +42,31 @@ background-size: cover;border-radius: 20px ;overflow: hidden ;position: relative
         <div class="row  m-2 mt-5 d-flex justify-content-between  " id="rowHome" >
 
                 <div class=" col-3  p-3  text-center fw-bold" style=" height: 120px;border:2px {{\App\Models\Color::getColors()->textHeader}} solid ;background:{{\App\Models\Color::getColors()->bgHeader}}">
+                    <a href="" style="color:{{\App\Models\Color::getColors()->textMain}}">
+
                     <div class=" fs-3" >
-                        <span>7</span>
+                        <span>{{$NAffaires}}</span>
                     </div>
                     <span>les-affaires </span>
+                    </a>
                 </div>
 
                 <div class="  p-3  col-3  text-center fw-bold" style=" height: 120px ;border:2px {{\App\Models\Color::getColors()->textHeader}} solid ;background:{{\App\Models\Color::getColors()->bgHeader}}">
+                    <a href="" style="color:{{\App\Models\Color::getColors()->textMain}}">
                     <div class=" fs-3" >
-                        <span>20</span>
+                        <span>{{$NClients}}</span>
                     </div>
                     <span>les-clients </span>
+                    </a>
                 </div>
 
                 <div class="  p-3 col-3   text-center fw-bold" style=" height: 120px ; border:2px {{\App\Models\Color::getColors()->textHeader}} solid ;background:{{\App\Models\Color::getColors()->bgHeader}}">
+                    <a href="" style="color:{{\App\Models\Color::getColors()->textMain}}">
                     <div class=" fs-3" >
-                        <span>17</span>
+                        <span>{{$NTaches}}</span>
                     </div>
                     <span>les-taches </span>
+                    </a>
                 </div>
 
         </div>

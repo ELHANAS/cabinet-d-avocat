@@ -13,7 +13,7 @@
                 {{ Session::get('error ') }}
             </div>
         @endif
-        <form class="form-inline">
+        <form action="{{route('affaire.filtrer')}}" class="form-inline">
             <div class="row p-0 ms-3  d-flex justify-content-between">
                 <div class="col-6 row  p-0  d-flex justify-content-around" style="" >
 
@@ -24,17 +24,20 @@
                         </a>
 
                     <div class=" col-5">
-                        <select class="form-select  " style="color: {{\App\Models\Color::getColors()->textBtn}};background: {{\App\Models\Color::getColors()->bgBtn}}">
-                            <option hidden  selected>filtrer par type</option>
-                            <option>option 1</option>
-                            <option>option 2</option>
+                        <select class="form-select  "  onchange="submit()" name="type" style="color: {{\App\Models\Color::getColors()->textBtn}};background: {{\App\Models\Color::getColors()->bgBtn}}">
+                            <option hidden value="" selected>filtrer par type</option>
+                            <option value="Problèmes administratifs">Problèmes administratifs</option>
+                            <option value="Problèmes commerciaux">Problèmes commerciaux</option>
+                            <option value="Affaires civiles">Affaires civiles</option>
+                            <option value="Délits, procès-verbaux et plaintes"> Délits, procès-verbaux et plaintes</option>
+                            <option value="Affaires civiles">Affaires civiles</option>
                         </select>
                     </div>
                     <div class="col col-5">
-                        <select class="form-select  " style="color: {{\App\Models\Color::getColors()->textBtn}};background: {{\App\Models\Color::getColors()->bgBtn}}">
-                            <option hidden  selected>filtrer par etat </option>
-                            <option>option 1</option>
-                            <option>option 2</option>
+                        <select class="form-select  " onchange="submit()" name="etat" style="color: {{\App\Models\Color::getColors()->textBtn}};background: {{\App\Models\Color::getColors()->bgBtn}}">
+                            <option hidden value=""  selected>filtrer par etat </option>
+                            <option value="0">En cours</option>
+                            <option value="1">Terminé</option>
                         </select>
                     </div>
                 </div>
@@ -75,7 +78,7 @@
                 @foreach($Affaires as $info)
             <tr>
                 <th scope="row">{{$info->nomber}}</th>
-                <td>{{$info->nameAffaire}}</td>
+                <td>{{$info->name}}</td>
                 <td>{{$info->nameClient}}</td>
                 <td>{{$info->nameUser}}</td>
                 <td>{{$info->type}}</td>

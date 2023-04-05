@@ -119,12 +119,7 @@ class AffaireController extends Controller
     public  function ajax_search_affaire(Request $request){
         if($request->ajax()){
             $searchAffaire=$request->searchAffaire;
-            $data=DB::table('affaires')
-                ->join('users', 'users.id', '=', 'affaires.id_user')
-                ->join('clients', 'clients.id', '=', 'affaires.id_client')
-                ->select('affaires.*','users.name As nameUser','clients.name As nameClient')
-                ->where("affaires.name","like","%$searchAffaire%")
-                ->get();
+            $data=Affaire::feltreAffaires("name",$searchAffaire) ;
             return view('ajax_search_affaire',['Affaires'=>$data]);
         }
 
@@ -171,5 +166,17 @@ class AffaireController extends Controller
         $affaire->document = $newFile  ;
         $affaire->save();
         return redirect()->back();
+    }
+    public  function affaires_type(Request $request){
+        if($request->etat == "0"){
+            $affaires = Affaire::getAffaireEncours() ;
+        }elseif($request->etat == "1"){
+            $affaires = Affaire::getAffaireTermine() ;
+        }
+        elseif( $request->type !== ""){
+            $affaires=Affaire::feltreAffaires("type",$request->type) ;
+
+        }
+        return view('affaires',['Affaires'=>$affaires]);
     }
 }
