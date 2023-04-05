@@ -22,7 +22,7 @@ Route::get("/ajouterTache",function (){
     return view("ajouterTache") ;
 }) ;
 Route::post("/Taches_search_ajax",[TacheController::class,"ajax_search_Tache"])->name("ajax_Tache") ;
-
+Route::get("/notification",[TacheController::class,"notification"])->name("tache.notification") ;
 
 /* Routes Users */
 Route::get('/ajouterUser', [userController::class,"create"]);

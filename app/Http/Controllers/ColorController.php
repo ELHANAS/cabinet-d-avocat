@@ -57,7 +57,26 @@ class ColorController extends Controller
             $color->imageBody = "backgroundGrinBody.jpg";
             $color->imageProfil = "istockphoto-1143525474-170667a.jpg" ;
         }
-
+        elseif ($id == 4){
+            $color->textHeader = "white" ;
+            $color->bgHeader = "black" ;
+            $color->textMain = "white" ;
+            $color->bgMain = "black";
+            $color->textBtn =  "black";
+            $color->bgBtn =  "white" ;
+            $color->imageBody = "imagesblack.jpg";
+            $color->imageProfil = "istockphoto-1143525474-170667a.jpg" ;
+        }
+        elseif ($id == 5){
+            $color->textHeader = "white" ;
+            $color->bgHeader = "#e75874" ;
+            $color->textMain = "#322514" ;
+            $color->bgMain = "pink";
+            $color->textBtn =  "#fbcbc9";
+            $color->bgBtn =  "#322514" ;
+            $color->imageBody = "images.jpg";
+            $color->imageProfil = "istockphoto-1143525474-170667a.jpg" ;
+        }
         $color->save() ;
         return redirect()->back() ;
     }

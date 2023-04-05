@@ -15,4 +15,5 @@ class AffaireSeeder extends Seeder
     {
         Affaire::factory(20)->create() ;
     }
+
 }

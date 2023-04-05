@@ -25,4 +25,5 @@ class TacheFactory extends Factory
             "DTache" => fake()->date()
         ];
     }
+
 }

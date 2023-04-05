@@ -86,10 +86,10 @@
             background: {{\App\Models\Color::getColors()->bgMain}};
 
         }
-       #params,#back{
+       #params,#back,#notif{
             width:    40px;
             height: 40px;
-display: inline-block;
+            display: inline-block;
            color: {{\App\Models\Color::getColors()->textBtn}};
            border-radius: 50%;
             position: absolute;
@@ -98,6 +98,14 @@ display: inline-block;
            border: 2px solid {{\App\Models\Color::getColors()->textBtn}};
            box-shadow: -3px 3px 3px #363636;
         }
+       #notif{
+           right: 130px;
+           border: none;
+           box-shadow: none;
+           padding: 5px;
+           background: transparent;
+           color:{{\App\Models\Color::getColors()->textHeader}} ;
+       }
         #params{
             right: 10px;
         }
@@ -134,6 +142,19 @@ display: inline-block;
         #rowHome div:hover{
             transform: scale(1.2, 1.2);
 
+        }
+        #notN{
+
+            display: inline-block;
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            width: 12px;
+            font-weight: bold;
+            font-size: 10px;
+    padding-right: 2px;
+            height: 12px;
+            border-radius: 50%;
         }
         #app{
             position: fixed;
@@ -238,9 +259,23 @@ display: inline-block;
                                     @endif
                                     <div class="col-3 text-end" >
                                         <a  href="{{ url()->previous() }}">
-                                            <svg id="back" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                                            <svg id="back" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
                                                 <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
                                             </svg></a>
+                                        <a href="{{route("tache.notification")}}">
+                                            <div id="notif" >
+                                                <div style="position:relative;">
+
+                                                <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                                                    <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+                                                </svg>
+                                                    @if(count(\App\Models\Tache::getTacheArm()) >0)
+                                             <span id="notN" class="bg-danger">{{count(\App\Models\Tache::getTacheArm())}}</span>
+                                                    @endif
+                                                </div>
+                                            </div>
+
+                                        </a>
                                     </div>
                                 </div>
 

@@ -38,10 +38,10 @@
                 <div class="form-group row mt-3">
                     <label class="form-label col-4 text-end" for="exampleCheck1">name-client :</label>
 
-                    <input class="form-control col" list="datalistOptions" name="nameclient" placeholder="entrer name..">
+                    <input class="form-control col" list="datalistOptions" value="{{old('nameclient',$data->getClient()->name)}}" name="nameclient" placeholder="entrer name..">
                     <datalist id="datalistOptions">
                         @foreach($dataclient as $client)
-                            <option @if($data->id_client = $client->id) selected @endif value="{{$client->name}}">
+                            <option  value="{{$client->name}}">
                         @endforeach
 
 
@@ -53,7 +53,7 @@
                 <div class="form-group row mt-3">
                     <label class="form-label col-4 text-end" for="avocat">name-avocat :</label>
 
-                    <input class="form-control col" list="avocat" name="avocat" placeholder="entrer name..">
+                    <input class="form-control col" list="avocat" value="{{old('avocat',$data->getAvocat()->name)}}" name="avocat" placeholder="entrer name..">
                     <datalist id="avocat">
                         @foreach($dataavocat as $avocat)
                             <option @if($avocat->id == $data->id) selected @endif value="{{$avocat->name}}">

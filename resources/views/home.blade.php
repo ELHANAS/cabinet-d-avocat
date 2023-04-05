@@ -16,7 +16,7 @@
 
                 <div class="p-3 col-lg-3  border bg-light text-center fw-bold" style=" height: 200px  ;box-shadow: 3px 3px 10px  black; background-image: linear-gradient(to top right,black, {{\App\Models\Color::getColors()->bgBtn}})">
                     <div class=" fs-1" style=" height: 50px ; ">
-                        <span>0</span>
+                        <span>{{$NAffaires}}</span>
                     </div>
                     <div  class=" " style=" height: 50px ; margin-top: 40px">
                         <span>Affair encour</span>
@@ -25,7 +25,7 @@
 
                 <div class="p-3 col-lg-3  border bg-light text-center fw-bold" style=" height: 200px  ;box-shadow: 3px 3px 10px  black; background-image: linear-gradient(to top right,black, {{\App\Models\Color::getColors()->bgBtn}})">
                     <div class=" fs-1" style=" height: 50px ; ">
-                        <span>10</span>
+                        <span>{{$NTaches}}</span>
                     </div>
                     <div  class=" " style=" height: 50px ; margin-top: 40px">
                         <span>les taches </span>

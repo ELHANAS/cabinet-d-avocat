@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Affaire;
 use App\Models\client;
 use App\Models\Tache;
 use Illuminate\Http\Request;
@@ -41,6 +42,6 @@ class HomeController extends Controller
         $nmbrClientActive = count(client::where(["active" => 1])->get()) ;
 
 
-        return view('home',["NClients"=>$nmbrClientActive]);
+        return view('home',["NClients"=>$nmbrClientActive,"NAffaires" => count(Affaire::getAffaireEncours()),"NTaches" =>count(Tache::getTachesPasT())]);
     }
 }

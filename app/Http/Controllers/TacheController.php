@@ -23,7 +23,7 @@ class TacheController extends Controller
      */
     public function create()
     {
-        //
+       //
     }
 
     /**
@@ -79,5 +79,8 @@ class TacheController extends Controller
 
             return view('ajax_search_tache',['taches'=>$data]);
         }
+    }
+    public  function notification(){
+        return view("pageNotification",["taches" => Tache::getTacheArm()]) ;
     }
 }
