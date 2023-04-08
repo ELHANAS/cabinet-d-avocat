@@ -17,7 +17,7 @@ class userController extends Controller
      */
     public function index()
     {
-        return view("listeUsers",["users"=>User::all()]);
+        return view("user.listeUsers",["users"=>User::all()]);
     }
 
     /**
@@ -25,7 +25,7 @@ class userController extends Controller
      */
     public function create()
     {
-        return view("AjouterUser") ;
+        return view("user.ajouterUser") ;
     }
 
     /**
@@ -46,7 +46,7 @@ class userController extends Controller
             $user->photo = $name ;
         }
         $user->save() ;
-        return redirect(route("users.index"))->with(["success"=>"user est ajouter avec succes"]) ;
+        return redirect(route("users.index"))->with(["success"=>"L'utilisateur  $user->name  est ajouté avec succès"]) ;
     }
 
     /**
@@ -61,7 +61,7 @@ class userController extends Controller
         if(!$user){
             return  redirect()->back()->withErrors("Cette utilisateur n'existe pas") ;
         }
-        return view("profilUser",["user"=>$user , "NAffaires" => count( $affaires ) , "NClients" =>count( $clients) , "NTaches" => count($taches)]) ;
+        return view("user.profilUser",["user"=>$user , "NAffaires" => count( $affaires ) , "NClients" =>count( $clients) , "NTaches" => count($taches)]) ;
     }
 
     /**
@@ -70,13 +70,13 @@ class userController extends Controller
     public function edit(int $id)
     {
         $user = User::select("*")->find($id) ;
-        return view("modifierUser",["user"=>$user]) ;
+        return view("user.modifierUser",["user"=>$user]) ;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(rolesAjouterUser $request, int $id)
+    public function update(Request $request, int $id)
     {
 
         $user = User::select("*")->find($id) ;
@@ -115,12 +115,13 @@ class userController extends Controller
      */
     public function destroy(int $id)
     {
+        $name = User::select("name")->find($id) ;
         if($id == Auth::user()->id ){
             User::where(['id'=>$id])->delete();
              return redirect(route("login"));
         }
         User::where(['id'=>$id])->delete();
-        return redirect(route("users.index"))->with("success","user est supprimer avec succes") ;
+        return redirect(route("users.index"))->with("success","supprimer $name->name est réussi") ;
 
     }
 
@@ -128,12 +129,12 @@ class userController extends Controller
         if($request->ajax()){
             $searchClient=$request->searchClient;
             $data=User::where("name","like","%{$searchClient}%")->orderby("id","ASC")->get();
-            return view('ajax_search_user',['data'=>$data]);
+            return view('user.ajax_search_user',['data'=>$data]);
         }
     }
     public  function  filtreUser(Request $request){
         $role = $request->filtreRole ;
         $data=User::where(["fonction"=>$role])->get() ;
-        return view("listeUsers",["users"=>$data]) ;
+        return view("user.listeUsers",["users"=>$data]) ;
     }
 }

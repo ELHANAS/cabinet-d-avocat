@@ -2,35 +2,47 @@
 
 @section('content')
     <div class="p-5" style="height:100%;background: {{\App\Models\Color::getColors()->bgMain}};color: {{\App\Models\Color::getColors()->textMain}}">
-        <form class="row">
+        <form class="row" action="{{route('tache.store')}}" method="post">
+            @csrf
             <div class="col-6 p-5">
                 <div class="form-group row">
                     <label class="col" for="titre">Titre :</label>
                     <input  type="text" class="form-control  col col" id="titre" aria-describedby="emailHelp" name="titre" placeholder="titre">
-                    <small  class="ms-3 form-text text-danger">error.</small>
+                    @error("titre")
+                    <small  class="ms-3 form-text text-danger">{{$message}}</small>
+                    @enderror
                 </div>
 
                 <div class="form- row">
                     <label class="col" class="form-label" for="DTache">date de tâche :</label>
-                    <input type="date" class="form-control col" id="DTache" placeholder="entrer your password..." name="password">
-                    <small  class="ms-3 form-text text-danger">error.</small>
+                    <input type="date" class="form-control col" id="DTache" name="date">
+                    @error("date")
+                    <small  class="ms-3 form-text text-danger">{{$message}}</small>
+                    @enderror
                 </div>
                 <div class="form-group row">
                     <label class="form-label col" for="affaire">affaire :</label>
-                    <select class="form-select col">
-                        <option>les affaire</option>
+                    <select class="form-select col" name="affaire">
+                        @foreach( $dataaffaire as $data)
+                            <option  value="{{$data->id}}">{{$data->name}}</option>
+                        @endforeach
+
                     </select>
-                    <small  class="ms-3 form-text text-danger">error.</small>
+                    @error("affaire")
+                    <small  class="ms-3 form-text text-danger">{{$message}}</small>
+                    @enderror
                 </div>
             </div>
 
 
             <div class="col-6 p-5">
                 <div class="form-group  row">
-                    <textarea style="height: 200px" >ecrire un description ...
+                    <textarea style="height: 200px"  name="description">ecrire un description ...
 
                     </textarea>
-                    <small  class="ms-3 form-text text-danger">error.</small>
+                    @error("description")
+                    <small  class="ms-3 form-text text-danger">{{$message}}</small>
+                    @enderror
                 </div>
             </div>
 

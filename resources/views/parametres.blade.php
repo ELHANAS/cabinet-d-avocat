@@ -51,3 +51,7 @@
 @section("titre","parametres")
 
 
+@section("params")
+    background:{{\App\Models\Color::getColors()->textHeader}};
+    color: {{\App\Models\Color::getColors()->bgHeader}};
+@endsection

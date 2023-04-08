@@ -16,7 +16,7 @@ class AffaireController extends Controller
      */
     public function index(){
         $data=DB::select('CALL praffaire()');
-        return view('affaires',['Affaires'=>$data]);
+        return view('affaire.affaires',['Affaires'=>$data]);
     }
 
     /**
@@ -28,7 +28,7 @@ class AffaireController extends Controller
         $dataclient=Client::all();
 
 
-        return view("ajouterAffaire",['dataavocat'=>$avocats,'dataclient'=>$dataclient]);
+        return view("affaire.ajouterAffaire",['dataavocat'=>$avocats,'dataclient'=>$dataclient]);
     }
 
     /**
@@ -62,7 +62,7 @@ class AffaireController extends Controller
         $data->document = $docs ;
 
         $data->save();
-        return redirect()->route("afficherAffaire")->with(['success'=>'Added sucsusful']);
+        return redirect()->route("afficherAffaire")->with(['success'=>"L'affaire  $data->name est ajouté avec succes"]);
 
     }
     /**
@@ -73,7 +73,7 @@ class AffaireController extends Controller
         $doc = explode("//",$affaire->document)  ;
         $documents = array_slice($doc,0,count($doc)- 1) ;
 
-        return view("detailAffaire",["affaire" => $affaire , "documents" => $documents]) ;
+        return view("affaire.detailAffaire",["affaire" => $affaire , "documents" => $documents]) ;
     }
 
     /**
@@ -84,7 +84,7 @@ class AffaireController extends Controller
         $avocats=DB::select("select * from users where fonction = 'Avocat'") ;
         $dataclient=Client::all();
 
-        Return view("modifierAffaire",["data" => $affaire , 'dataavocat'=>$avocats,'dataclient'=>$dataclient]) ;
+        Return view("affaire.modifierAffaire",["data" => $affaire , 'dataavocat'=>$avocats,'dataclient'=>$dataclient]) ;
     }
 
     /**
@@ -112,15 +112,16 @@ class AffaireController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Affaire $affaire){
+        $name = $affaire->name ;
         $affaire->delete();
-        return redirect()->route("afficherAffaire")->with(['success'=>'delete  successfully']);
+        return redirect()->route("afficherAffaire")->with(['success'=>"supprimer l'affaire $name est réussi"]);
 
     }
     public  function ajax_search_affaire(Request $request){
         if($request->ajax()){
             $searchAffaire=$request->searchAffaire;
             $data=Affaire::feltreAffaires("name",$searchAffaire) ;
-            return view('ajax_search_affaire',['Affaires'=>$data]);
+            return view('affaire.ajax_search_affaire',['Affaires'=>$data]);
         }
 
     }
@@ -177,6 +178,6 @@ class AffaireController extends Controller
             $affaires=Affaire::feltreAffaires("type",$request->type) ;
 
         }
-        return view('affaires',['Affaires'=>$affaires]);
+        return view('affaire.affaires',['Affaires'=>$affaires]);
     }
 }

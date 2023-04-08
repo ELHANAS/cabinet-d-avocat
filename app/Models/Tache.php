@@ -14,4 +14,10 @@ class Tache extends Model
     public  static  function  getTachesPasT(){
         return Tache::select("*")->where("TacheF",false)->get() ;
     }
+    protected $fillable = [
+      'titre',
+        'Description',
+        'DTache',
+        'id_affaire'
+    ];
 }

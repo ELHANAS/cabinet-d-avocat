@@ -7,21 +7,26 @@ use App\Http\Requests\CreatClientsRequest;
 ;
 
 use App\Models\job;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ClientsController extends Controller
 {
     public function index(){
+        foreach (Client::all() as $client){
+            DB::select('CALL clientActive(?)',array($client->id)) ;
+        }
         $data=client::select("*")->orderby("id","ASC")->get();
-        return view('Clients',['data'=>$data]);
+        return view('client.Clients',['data'=>$data]);
     }
     public function create(){
 
-        return view("AjouterClient");
+        return view("client.ajouterClient");
 
     }
     function store(CreatClientsRequest $request){
-        $dataupdate['name']=$request->input('name');
+        $data['name']=$request->input('name');
         $data['adresse'] = $request->input('Adress');
         $data['ville'] = $request->input('Ville');
         $data['tel'] = $request->input('tel');
@@ -30,8 +35,9 @@ class ClientsController extends Controller
         $data['datenaissance'] = $request->input('dat_naiss');
         $data['create_at']= date("Y-m-d H:i:s");
         $data['update_at']= date("Y-m-d H:i:s");
+        $name = $data['name'] ;
         Client::create($data);
-        return redirect()->route("clients")->with(['success'=>'Added sucsusful'])
+        return redirect()->route("clients")->with(['success'=>"Le client $name  est ajouté avec succès"])
 
 
             ;
@@ -55,15 +61,16 @@ class ClientsController extends Controller
 
     }
     function destroy($id){
+        $name = Client::select("name")->find($id) ;
         Client::where(['id'=>$id])->delete();
-        return redirect()->route("clients")->with(['success'=>'delete  sucsusful']);
+        return redirect()->route("clients")->with(['success'=>"supprimer le client  $name->name est réussi"]);
 
     }
     function ajax_search_client(Request $request){
         if($request->ajax()){
             $searchClient=$request->searchClient;
             $data=Client::where("name","like","%{$searchClient}%")->orderby("id","ASC")->get();
-            return view('ajax_search_client',['data'=>$data]);
+            return view('client.ajax_search_client',['data'=>$data]);
 
         }
     }
@@ -71,13 +78,13 @@ class ClientsController extends Controller
         if($request->ajax()){
             $filtrerClient=$request->filtrerClient;
             $data=Client::where("ville","like","%{$filtrerClient}%")->orderby("id","ASC")->get();
-            return view('ajax_search_client',['data'=>$data]);
+            return view('client.ajax_search_client',['data'=>$data]);
 
         }
     }
     public  function show(int $id){
         $data=Client::select("*")->find($id);
-        return view('profilClient' ,['data'=>$data]);
+        return view('client.profilClient' ,['data'=>$data]);
     }
 
 }

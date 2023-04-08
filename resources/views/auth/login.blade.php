@@ -136,7 +136,7 @@
                         <div class="row mb-0">
                             <div class="col">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
+                                    {{ __('connexion') }}
                                 </button>
 
                                 @if (Route::has('password.request'))

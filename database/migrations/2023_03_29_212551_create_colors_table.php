@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string("textMain");
             $table->string("bgMain");
             $table->string("textBtn");
+            $table->string("imageBody");
+            $table->string("imageProfil");
             $table->timestamps();
         });
     }

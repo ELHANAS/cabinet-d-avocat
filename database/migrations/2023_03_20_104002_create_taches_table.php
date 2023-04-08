@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('titre');
             $table->text('Description');
-            $table->boolean('lalarme');
-            $table->boolean('TacheF');
+            $table->boolean('lalarme')->default(0);
+            $table->boolean('TacheF')->default(0);
             $table->integer("id_affaire") ;
             $table->date('DTache');
             $table->timestamps();

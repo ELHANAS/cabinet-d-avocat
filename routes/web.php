@@ -18,12 +18,14 @@ use App\Http\Controllers\TacheController ;
 
 /* Routes Taches */
 Route::get("/Taches",[TacheController::class,"index"])->name("taches") ;
-Route::get("/ajouterTache",function (){
-    return view("ajouterTache") ;
-}) ;
 Route::post("/Taches_search_ajax",[TacheController::class,"ajax_search_Tache"])->name("ajax_Tache") ;
 Route::get("/notification",[TacheController::class,"notification"])->name("tache.notification") ;
+Route::get('/ajouterTaches', [TacheController::class,"create"])->name('create-taches');
 
+Route::post('/tache/store',[TacheController::class,'store'])->name("tache.store");
+Route::get('/tache/modifier/{tache}',[TacheController::class,'edit'])->name("tache.edit");
+
+Route::post('/tache/update',[TacheController::class,'update'])->name("tache.update");
 /* Routes Users */
 Route::get('/ajouterUser', [userController::class,"create"]);
 Route::match(['get', 'post'],'\ajax_user',[userController::class,'ajax_search'])->name("ajax_user");
